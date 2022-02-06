@@ -1,0 +1,2727 @@
+!(function (e) {
+  function t(t) {
+    for (
+      var i, a, n = t[0], l = t[1], c = t[2], h = 0, u = [];
+      h < n.length;
+      h++
+    )
+      (a = n[h]),
+        Object.prototype.hasOwnProperty.call(r, a) && r[a] && u.push(r[a][0]),
+        (r[a] = 0);
+    for (i in l) Object.prototype.hasOwnProperty.call(l, i) && (e[i] = l[i]);
+    for (d && d(t); u.length; ) u.shift()();
+    return o.push.apply(o, c || []), s();
+  }
+  function s() {
+    for (var e, t = 0; t < o.length; t++) {
+      for (var s = o[t], i = !0, n = 1; n < s.length; n++) {
+        var l = s[n];
+        0 !== r[l] && (i = !1);
+      }
+      i && (o.splice(t--, 1), (e = a((a.s = s[0]))));
+    }
+    return e;
+  }
+  var i = {},
+    r = { 1: 0 },
+    o = [];
+  function a(t) {
+    if (i[t]) return i[t].exports;
+    var s = (i[t] = { i: t, l: !1, exports: {} });
+    return e[t].call(s.exports, s, s.exports, a), (s.l = !0), s.exports;
+  }
+  (a.m = e),
+    (a.c = i),
+    (a.d = function (e, t, s) {
+      a.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: s });
+    }),
+    (a.r = function (e) {
+      "undefined" != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+        Object.defineProperty(e, "__esModule", { value: !0 });
+    }),
+    (a.t = function (e, t) {
+      if ((1 & t && (e = a(e)), 8 & t)) return e;
+      if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+      var s = Object.create(null);
+      if (
+        (a.r(s),
+        Object.defineProperty(s, "default", { enumerable: !0, value: e }),
+        2 & t && "string" != typeof e)
+      )
+        for (var i in e)
+          a.d(
+            s,
+            i,
+            function (t) {
+              return e[t];
+            }.bind(null, i)
+          );
+      return s;
+    }),
+    (a.n = function (e) {
+      var t =
+        e && e.__esModule
+          ? function () {
+              return e.default;
+            }
+          : function () {
+              return e;
+            };
+      return a.d(t, "a", t), t;
+    }),
+    (a.o = function (e, t) {
+      return Object.prototype.hasOwnProperty.call(e, t);
+    }),
+    (a.p = "");
+  var n = (window.shopifySlateJsonp = window.shopifySlateJsonp || []),
+    l = n.push.bind(n);
+  (n.push = t), (n = n.slice());
+  for (var c = 0; c < n.length; c++) t(n[c]);
+  var d = l;
+  o.push([225, 0]), s();
+})({
+  1: function (e, t, s) {
+    "use strict";
+    t.a = (e, t) => {
+      let s = [];
+      for (let i = 0; i < e.length; i++) s.push(t(e[i], i));
+      return s;
+    };
+  },
+  10: function (e, t, s) {
+    "use strict";
+    s.d(t, "c", function () {
+      return i;
+    }),
+      s.d(t, "b", function () {
+        return r;
+      }),
+      s.d(t, "a", function () {
+        return o;
+      });
+    const i = (e) => e.properties && e.properties.hasOwnProperty("TryNow"),
+      r = (e) =>
+        e ? e.reduce((e, t) => (i(t) ? e + t.final_line_price : e), 0) : 0,
+      o = (e) => (e ? e.reduce((e, t) => (i(t) ? e + t.quantity : e), 0) : 0);
+  },
+  100: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      s.d(t, "a", function () {
+        return n;
+      });
+      var i = s(231),
+        r = s(232),
+        o = s(10);
+      const a = e.fetch,
+        n = () => {
+          a("/cart.js")
+            .then((e) => e.json())
+            .then((e) => {
+              let t =
+                "https://westernrise.trynowcheckout.com/customer-information";
+              (t += "?shopName=westernrise.com"),
+                (t += "&token=" + e.token),
+                l(e.items).then((e) => {
+                  window.location.href = t;
+                });
+            });
+        },
+        l = (e) => {
+          const t = Object(i.a)(e, (e) => e.variant_id);
+          let s = [],
+            a = [],
+            n = [],
+            l = 0;
+          return (
+            Object(r.a)(t, (e, t) => {
+              e.length > 1
+                ? ((l = e.reduce((e, t) => (s.push(t.key), e + t.quantity), 0)),
+                  a.push({ id: t, quantity: l, item_url: e[0].url }))
+                : Object(o.c)(e[0]) || n.push(e[0]);
+            }),
+            s.length > 0
+              ? c(s)
+                  .then((e) =>
+                    d(a).then((e) => {
+                      if (n.length > 0) return h(n);
+                    })
+                  )
+                  .catch((e) => console.log(e))
+              : n.length > 0
+              ? h(n)
+              : new Promise((e) => e())
+          );
+        },
+        c = (e) => {
+          const t = e.reduce((e, t) => ((e[t] = 0), e), {});
+          return a("/cart/update.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ updates: t }),
+          }).then((e) => e.json());
+        },
+        d = (e) => {
+          const t = e.map((e) => ({
+            id: e.id,
+            quantity: e.quantity,
+            properties: { TryNow: "true" },
+          }));
+          return a("/cart/add.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: t }),
+          }).then((e) => e.json());
+        },
+        h = (e) => {
+          const t = [],
+            s = e.map((e) =>
+              a(e.url.split("?")[0] + ".js")
+                .then((e) => e.json())
+                .then(
+                  (s) => (
+                    m(s) &&
+                      t.push({
+                        id: e.key,
+                        quantity: e.quantity,
+                        properties: { TryNow: "true" },
+                      }),
+                    s
+                  )
+                )
+            );
+          return Promise.all(s).then((e) => (t.length > 0 ? u(t) : e));
+        },
+        u = (e) => {
+          const t = e.map((e) =>
+            a("/cart/change.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(e),
+            }).then((e) => e.json())
+          );
+          return Promise.all(t);
+        },
+        m = (e) =>
+          !!(e && e.tags && e.tags.length) && e.tags.includes("TryNow");
+    }.call(this, s(15)));
+  },
+  102: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      s.d(t, "a", function () {
+        return r;
+      });
+      const i = e.fetch,
+        r = (e, t, s = {}, r = "Both") => {
+          const o = Object.assign({}, s, {
+              g: e,
+              email: t,
+              $fields: "Interests",
+              Interests: r,
+            }),
+            a = Object.keys(o).reduce(
+              (e, t) => (e.append(t, o[t]), e),
+              new URLSearchParams()
+            );
+          return i(
+            "https://manage.kmail-lists.com/ajax/subscriptions/subscribe",
+            {
+              method: "POST",
+              headers: {
+                "Access-Control-Allow-Headers": "*",
+                "Content-Type":
+                  "application/x-www-form-urlencoded; charset=utf-8",
+              },
+              body: a,
+            }
+          ).then((e) => e.json());
+        };
+    }.call(this, s(15)));
+  },
+  105: function (e, t, s) {},
+  12: function (e, t, s) {
+    "use strict";
+    t.a = (e) => {
+      let t = null,
+        s = e,
+        i = [];
+      return {
+        getState: () => s,
+        setState: (e) => {
+          (t = s),
+            (s = Object.assign({}, s, e)),
+            (() => {
+              for (var e = 0; e < i.length; e++) {
+                var r = i[e];
+                r && i.indexOf(r) > -1 && r(s, t);
+              }
+            })();
+        },
+        listen: (e) => {
+          i.indexOf(e) > -1 || i.push(e);
+        },
+        unlisten: (e) => {
+          let t = i.indexOf(e);
+          t > -1 && i.splice(t, 1);
+        },
+      };
+    };
+  },
+  13: function (e, t, s) {
+    "use strict";
+    s.d(t, "a", function () {
+      return n;
+    });
+    var i = s(1),
+      r = s(4),
+      o = s.n(r),
+      a = s(12);
+    class n {
+      constructor(e, t) {
+        (this.destroy = () => {
+          this.appStore.unlisten(this.onAppStoreChange),
+            this.store.unlisten(this.onStateChange),
+            this.el.removeEventListener("submit", this.onSubmit),
+            Object(i.a)(this.optionButtons, (e, t) => {
+              const s = this.optionListeners[t];
+              e.removeEventListener("click", s);
+            });
+        }),
+          (this.variantFromOptionValues = (e) =>
+            o()(this.productVariantOptions, (t) => {
+              for (let s = 0; s < t.optionValues.length; s++)
+                if (e[s] !== t.optionValues[s]) return !1;
+              return !0;
+            })),
+          (this.getNextAvailableSize = (e) => {
+            const t = [];
+            return (
+              Object(i.a)(this.sizeSelector, (s) => {
+                const i = Number(s.dataset.optionIndex.replace("option", "")),
+                  r = e.slice();
+                (r[i - 1] = s.dataset.value),
+                  this.variantFromOptionValues(r).isAvailable && t.push(r);
+              }),
+              this.variantFromOptionValues(t[0])
+            );
+          }),
+          (this.onAppStoreChange = (e, t) => {
+            this.processColorSelection(this.store.getState()),
+              this.processSizeSelection(this.store.getState()),
+              this.processOptionValueLabels(this.store.getState());
+          }),
+          (this.onSubmit = (e) => {
+            e.preventDefault();
+            const t = this.store.getState().activeProductVariantId;
+            this.appStore.addVariantAndOpenCart(t);
+          }),
+          (this.onStateChange = (e, t) => {
+            this.processColorSelection(e),
+              this.processSizeSelection(e),
+              this.processOptionValueLabels(e),
+              this.processImages(e, t),
+              this.processAnchors(e, t);
+          }),
+          (this.processAnchors = (e) => {
+            Object(i.a)(this.anchors, (t) => {
+              t.setAttribute(
+                "href",
+                `/collections/${this.el.dataset.collectionHandle}/products/${this.el.dataset.productHandle}?variant=${e.activeProductVariantId}`
+              );
+            });
+          }),
+          (this.processImages = (e) => {
+            Object(i.a)(this.productImages, (e) => {
+              e.dataset.variants.indexOf(
+                this.store.getState().activeProductVariantId
+              ) > -1
+                ? e.classList.remove("dn")
+                : e.classList.add("dn");
+            });
+          }),
+          (this.processColorSelection = (e) => {
+            Object(i.a)(this.colorButtons, (t) => {
+              if (e.pendingAddVariantId)
+                t.classList.add("loading"), (t.disabled = !0);
+              else {
+                t.classList.remove("loading"), (t.disabled = !1);
+                const s = Number(t.dataset.optionIndex.replace("option", ""));
+                e.values[s - 1] === t.dataset.value
+                  ? (t.classList.add("active"),
+                    (this.colorLabel.innerHTML = t.dataset.value))
+                  : t.classList.remove("active");
+              }
+            });
+          }),
+          (this.processSizeSelection = (e) => {
+            Object(i.a)(this.sizeSelector, (t) => {
+              e.pendingAddVariantId
+                ? (t.classList.add("loading"), (t.disabled = !0))
+                : t.classList.remove("loading");
+              const s = Number(t.dataset.optionIndex.replace("option", "")),
+                i = e.values.slice();
+              (i[s - 1] = t.dataset.value),
+                this.variantFromOptionValues(i).isAvailable
+                  ? (t.disabled = !1)
+                  : (t.disabled = !0),
+                e.values[s - 1] === t.dataset.value
+                  ? t.classList.add("active")
+                  : t.classList.remove("active");
+            });
+          }),
+          (this.processOptionValueLabels = (e) => {
+            Object(i.a)(this.optionValueLabels, (t) => {
+              const s = Number(t.dataset.optionValue.replace("option", "")) - 1,
+                i = e.values[s];
+              t.innerHTML = i;
+            });
+          }),
+          (this.el = e),
+          (this.anchors = e.querySelectorAll(n.anchorSelector)),
+          (this.form = e.querySelectorAll(n.formSelector)),
+          (this.optionButtons = e.querySelectorAll(n.optionSelector)),
+          (this.optionValueLabels = e.querySelectorAll(n.optionValueSelector)),
+          (this.submitButton = e.querySelector(n.submitSelector)),
+          (this.variantInput = e.querySelector(n.variantIdSelector)),
+          (this.productImages = e.querySelectorAll(n.imageSelector)),
+          (this.colorButtons = e.querySelectorAll(n.colorSelector)),
+          (this.colorLabel = e.querySelector(n.colorLabelSelector)),
+          (this.sizeSelector = e.querySelectorAll(n.sizeSelector)),
+          (this.productVariantOptions = JSON.parse(this.el.dataset.variants)),
+          (this.store = Object(a.a)({
+            activeProductVariantId: e.dataset.productCard,
+            values: e.dataset.values.split(","),
+          })),
+          (this.appStore = t),
+          (this.optionListeners = Object(i.a)(this.optionButtons, (e) => {
+            const t = () => {
+              const t = Number(e.dataset.optionIndex.replace("option", "")),
+                s = this.store.getState().values.slice();
+              s[t - 1] = e.dataset.value;
+              const i = this.variantFromOptionValues(s);
+              if (i)
+                if (i.isAvailable)
+                  this.store.setState({
+                    activeProductVariantId: i.id,
+                    values: i.optionValues.slice(),
+                  });
+                else {
+                  const e = this.getNextAvailableSize(s);
+                  this.store.setState({
+                    activeProductVariantId: e.id,
+                    values: e.optionValues.slice(),
+                  });
+                }
+            };
+            return e.addEventListener("click", t), t;
+          })),
+          this.appStore.listen(this.onAppStoreChange),
+          this.store.listen(this.onStateChange),
+          this.el.addEventListener("submit", this.onSubmit),
+          this.processColorSelection(this.store.getState()),
+          this.processSizeSelection(this.store.getState()),
+          this.processOptionValueLabels(this.store.getState()),
+          this.processImages(this.store.getState());
+      }
+    }
+    (n.domSelector = ".product-card[data-variants]"),
+      (n.anchorSelector = "a"),
+      (n.formSelector = "[data-quick-add-form]"),
+      (n.submitSelector = 'button[name="submit"]'),
+      (n.variantIdSelector = 'input[name="id"]'),
+      (n.optionSelector = "button[data-option-index]"),
+      (n.optionValueSelector = "[data-option-value]"),
+      (n.imageSelector = ".product-card__image"),
+      (n.colorSelector = ".product-card__swatch"),
+      (n.colorLabelSelector = ".product-card__color-label"),
+      (n.sizeSelector = ".product-card__size");
+  },
+  2: function (e, t, s) {
+    "use strict";
+    (window.app = window.app || {}), (t.a = window.app);
+  },
+  225: function (e, t, s) {
+    "use strict";
+    s.r(t), s(104), s(105);
+    var i = s(96);
+    class r {
+      constructor(e) {
+        (this.destroy = () => {
+          this.el.removeEventListener("change", this.onSelect);
+        }),
+          (this.onSelect = () => {
+            const e = this.el.options[this.el.selectedIndex].value;
+            e && (window.location = e);
+          }),
+          (this.el = e),
+          this.el && this.el.addEventListener("change", this.onSelect);
+      }
+    }
+    r.domSelector = "#collection--select";
+    const o = (e) => {
+        window.scrollTo(0, e);
+      },
+      a = () =>
+        window.scrollY ||
+        window.pageYOffset ||
+        document.body.scrollTop +
+          ((document.documentElement && document.documentElement.scrollTop) ||
+            0);
+    class n {
+      constructor(e) {
+        l.call(this),
+          (this.el = e),
+          this.el.addEventListener("click", this.onClickAnchor);
+      }
+    }
+    (n.domSelector = 'a[href^="#"]'),
+      (n.scrollDuration = 1e3),
+      (n.mobileOffset = 88),
+      (n.desktopOffset = 78),
+      (n.breakpoint = 800);
+    var l = function () {
+        (this.destroy = () => {
+          this.el.removeEventListener("click", this.onClickAnchor);
+        }),
+          (this.onClickAnchor = (e) => {
+            let t = e.path ? e.path[0] : e.target;
+            for (; t && t.matches && !t.matches("a[href]"); ) t = t.parentNode;
+            if (!t || !t.matches || !t.matches("a[href]")) return;
+            if (e.which > 1 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+              return;
+            if (t.target && "_blank" === t.target) return;
+            if (t.getAttribute && "string" == typeof t.getAttribute("download"))
+              return;
+            if (t.href.indexOf("#") < 0) return;
+            const s = document.querySelector(t.hash);
+            if (!s) return;
+            e.preventDefault();
+            const i =
+              window.innerWidth >= n.breakpoint
+                ? n.desktopOffset
+                : n.mobileOffset;
+            ((e, t = 1e3, s) => {
+              const i = a(),
+                r = e - i;
+              let n = new Date();
+              !(function a() {
+                const l = new Date() - n,
+                  c = (function (e, t, s, i) {
+                    return (e /= i / 2) < 1
+                      ? (s / 2) * e * e * e * e * e + t
+                      : (s / 2) * ((e -= 2) * e * e * e * e + 2) + t;
+                  })(l, i, r, t);
+                o(c), l < t ? requestAnimationFrame(a) : (o(e), s && s());
+              })();
+            })(s.offsetTop - i, n.scrollDuration);
+          });
+      },
+      c =
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        ((e) => {
+          setTimeout(e, 1e3 / 60);
+        });
+    const d = function () {
+      (this.isListening = !1),
+        (this.listeners = []),
+        (this.onScroll = this.onScroll.bind(this)),
+        (this.onScroll = ((e) => {
+          let t = !1;
+          const s = () => {
+            e(), (t = !1);
+          };
+          return () => {
+            t || ((t = !0), c(s));
+          };
+        })(this.onScroll)),
+        this.manageWindowEventListener();
+    };
+    (d.prototype.destroy = function () {
+      (this.isListening = !1),
+        (this.listeners = []),
+        window.removeEventListener("scroll", this.onScroll),
+        window.removeEventListener("resize", this.onScroll);
+    }),
+      (d.prototype.listen = function (e) {
+        this.listeners.indexOf(e) > -1 ||
+          (this.listeners.push(e), this.manageWindowEventListener());
+      }),
+      (d.prototype.unlisten = function (e) {
+        let t = this.listeners.indexOf(e);
+        t > -1 && this.listeners.splice(t, 1), this.manageWindowEventListener();
+      }),
+      (d.prototype.onScroll = function () {
+        const e = {
+          x: window.pageXOffset,
+          y: window.pageYOffset,
+          height: window.innerHeight,
+          width: window.innerWidth,
+        };
+        for (let t = 0; t < this.listeners.length; t++) {
+          let s = this.listeners[t];
+          s && this.listeners.indexOf(s) > -1 && s(e);
+        }
+      }),
+      (d.prototype.manageWindowEventListener = function () {
+        this.listeners.length && !this.isListening
+          ? (window.addEventListener("scroll", this.onScroll),
+            window.addEventListener("resize", this.onScroll),
+            (this.isListening = !0))
+          : !this.listeners.length &&
+            this.isListening &&
+            (window.removeEventListener("scroll", this.onScroll),
+            window.removeEventListener("resize", this.onScroll),
+            (this.isListening = !1));
+      });
+    var h = new d(),
+      u = s(1),
+      m = s(5);
+    class p {
+      constructor(e, t) {
+        (this.destroy = () => {
+          h.unlisten(this.onScroll),
+            this.store.unlisten(this.onStoreUpdate),
+            Object(u.a)(this.categoryTriggers, (e, t) => {
+              const s = this.categoryTriggerListeners[t];
+              e.removeEventListener("mouseenter", s);
+            }),
+            Object(u.a)(this.searchTriggers, (e) => {
+              e.removeEventListener("mouseenter", this.onOpenSearch),
+                e.removeEventListener("click", this.onToggleSearch);
+            }),
+            this.el.removeEventListener("mouseenter", this.onEnterHeader),
+            this.el.removeEventListener("mouseleave", this.onLeaveHeader),
+            this.searchInput.removeEventListener("input", this.onChangeSearch),
+            this.mobileMenuTrigger.removeEventListener(
+              "click",
+              this.store.toggleMobileNav
+            ),
+            this.mobileMenuCloseTrigger.removeEventListener(
+              "click",
+              this.store.toggleMobileNav
+            );
+        }),
+          (this.onToggleSearch = () => {
+            console.log("onToggleSearch"),
+              this.store.setSearchOpen(!this.store.getState().isSearchOpen);
+          }),
+          (this.onChangeSearch = () => {
+            (this.searchQuery = this.searchInput.value),
+              this.fetchController &&
+                (this.fetchController.abort(), delete this.fetchController),
+              (this.fetchController = new AbortController());
+            const e = this.fetchController.signal;
+            fetch(
+              `/search/suggest.json?s=${this.searchQuery}&limit=3&resources[types][]=product`,
+              { signal: e }
+            )
+              .then((e) => e.json())
+              .then((e) => {
+                (this.searchResults = e.resources.results.products),
+                  this.processSearchResults();
+              });
+          }),
+          (this.onOpenSearch = () => {
+            this.store.setSearchOpen(!0);
+          }),
+          (this.onLeaveHeader = () => {
+            this.searchContainer.classList.remove("active"),
+              (this.closeMenuTimeout = setTimeout(() => {
+                this.store.setDesktopHeaderCategory(null),
+                  this.store.setSearchOpen(!1),
+                  (this.searchResults = []);
+              }, p.menuLeaveThreshold));
+          }),
+          (this.onEnterHeader = () => {
+            clearTimeout(this.closeMenuTimeout);
+          }),
+          (this.onScroll = () => {
+            a() >= p.scrollThreshold
+              ? this.store.setScrolledHeader(!0)
+              : this.store.setScrolledHeader(!1);
+          }),
+          (this.onStoreUpdate = (e, t) => {
+            e.isHeaderScrolled !== t.isHeaderScrolled &&
+              (e.isHeaderScrolled
+                ? this.el.classList.add("scrolled")
+                : this.el.classList.remove("scrolled")),
+              e.activeDesktopCategory !== t.activeDesktopCategory &&
+                Object(u.a)(this.categories, (t) => {
+                  t.dataset.category === e.activeDesktopCategory
+                    ? (t.classList.remove("dn"), t.classList.add("active"))
+                    : (t.classList.remove("active"), t.classList.add("dn"));
+                }),
+              e.isSearchOpen !== t.isSearchOpen &&
+                (e.isSearchOpen
+                  ? (this.searchContainer.classList.remove("dn"),
+                    this.searchContainer.classList.add("active"),
+                    this.searchContainer
+                      .querySelector(p.searchInputSelector)
+                      .focus())
+                  : this.searchContainer.classList.add("dn")),
+              e.isMobileNavOpen !== t.isMobileNavOpen &&
+                (e.isMobileNavOpen
+                  ? (document.body.classList.add("mobile-header-active"),
+                    this.mobileMenuTrigger.classList.add(
+                      "mobile-header-active"
+                    ))
+                  : (document.body.classList.remove("mobile-header-active"),
+                    this.mobileMenuTrigger.classList.remove(
+                      "mobile-header-active"
+                    ))),
+              e.isMiniCartOpen !== t.isMiniCartOpen &&
+                (e.isMiniCartOpen
+                  ? this.el.classList.add("cart-opened")
+                  : this.el.classList.remove("cart-opened"));
+          }),
+          (this.store = t),
+          (this.el = e),
+          (this.categories = e.querySelectorAll(p.categorySelector)),
+          (this.categoryTriggers = e.querySelectorAll(
+            p.categoryTriggerSelector
+          )),
+          (this.searchTriggers = document.querySelectorAll(
+            p.searchTriggerSelector
+          )),
+          (this.searchContainer = e.querySelector(p.searchContainerSelector)),
+          (this.searchInput = e.querySelector(p.searchInputSelector)),
+          (this.searchResultsContainer = e.querySelector(
+            p.searchResultsSelector
+          )),
+          (this.mobileMenuTrigger = e.querySelector(
+            p.mobileMenuTriggerSelector
+          )),
+          (this.mobileMenuCloseTrigger = document.body.querySelector(
+            p.mobileMenuCloseTriggerSelector
+          )),
+          (this.mobileMenu = e.querySelector(p.mobileMenuContainerSelector)),
+          (this.searchQuery = ""),
+          (this.searchResults = []),
+          (this.isSearching = !1),
+          t.listen(this.onStoreUpdate),
+          h.listen(this.onScroll),
+          this.onScroll(),
+          (this.categoryTriggerListeners = Object(u.a)(
+            this.categoryTriggers,
+            (e) => {
+              const s = () => {
+                t.setDesktopHeaderCategory(e.dataset.category);
+              };
+              return e.addEventListener("mouseenter", s), s;
+            }
+          )),
+          Object(u.a)(this.searchTriggers, (e) => {
+            e.addEventListener("click", this.onToggleSearch);
+          }),
+          this.el.addEventListener("mouseenter", this.onEnterHeader),
+          this.el.addEventListener("mouseleave", this.onLeaveHeader),
+          this.searchInput.addEventListener("input", this.onChangeSearch),
+          this.mobileMenuTrigger.addEventListener(
+            "click",
+            this.store.toggleMobileNav
+          ),
+          this.mobileMenuCloseTrigger.addEventListener(
+            "click",
+            this.store.toggleMobileNav
+          );
+      }
+      processSearchResults() {
+        const e = this.searchResults.slice(0, 4);
+        if (0 === e.length)
+          return void (this.searchResultsContainer.innerHTML = `\n\t\t\t\t<div class="grid-container contained pb2">\n\t\t\t\t\t<h1 class="h2 mt1 mt8--lg mb1 tc">\n\t\t\t\t\t\tNo results for "${this.searchQuery}"\n\t\t\t\t\t</h1>\n\t\t\t\t\t<div class="mt4 mb4 tc show--lg">\n\t\t\t\t\t\t<a\n\t\t\t\t\t\t\thref="/"\n\t\t\t\t\t\t\ttitle="Shop All"\n\t\t\t\t\t\t\tclass="button--border padded">\n\t\t\t\t\t\t\t<span class="button__underline">Shop all</span>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t`);
+        const t = `\n\t\t\t<div class="grid-container contained pb2">\n\t\t\t\t<h1 class="h2 mt1 mb1 tc">\n\t\t\t\t\tProduct Suggestions\n\t\t\t\t</h1>\n\t\t\t\t<div class="row mb2 tc">\n\t\t\t\t\t${e
+          .map(
+            (t, s) =>
+              `\n\t\t\t\t\t\t<div class="col c6 c2--lg ${
+                s >= e.length - 2 ? "show--lg" : ""
+              }">\n\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\tclass="product-card__image"\n\t\t\t\t\t\t\t\ttitle="${
+                t.title
+              }"\n\t\t\t\t\t\t\t\thref="${
+                t.url
+              }">\n\t\t\t\t\t\t\t\t<span class="db image size--5x7 mb1">\n\t\t\t\t\t\t\t\t\t<picture>\n\t\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\t\talt="${
+                t.title
+              }"\n\t\t\t\t\t\t\t\t\t\t\tsrc="${
+                t.image
+              }"\n\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t</picture>\n\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t<span class="media media--horizontal gutter--none media--reverse mb1 folio--small-uppercase tl">\n\t\t\t\t\t\t\t\t\t<span class="media__fluid">\n\t\t\t\t\t\t\t\t\t\t<span class="db">\n\t\t\t\t\t\t\t\t\t\t\t${
+                t.title
+              }\n\t\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\t<span class="media__fixed pl1 pl2--lg">\n\t\t\t\t\t\t\t\t\t\t${Object(
+                m.b
+              )(
+                100 * t.price
+              )}\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t`
+          )
+          .join(
+            ""
+          )}\n\t\t\t\t</div>\n\t\t\t\t<div class="tc">\n\t\t\t\t\t<a\n\t\t\t\t\t\thref="/search?q=${
+          this.searchQuery
+        }&type=product"\n\t\t\t\t\t\ttitle="Search"\n\t\t\t\t\t\tclass="button--black padded">\n\t\t\t\t\t\t<span class="button__underline">View All Results</span>\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`;
+        this.searchResultsContainer.innerHTML = t;
+      }
+    }
+    (p.domSelector = ".header__container"),
+      (p.categorySelector = ".header__desktop-category"),
+      (p.categoryTriggerSelector = ".header__desktop-category-trigger"),
+      (p.searchTriggerSelector = ".header__search-trigger"),
+      (p.searchContainerSelector = ".header__search"),
+      (p.searchInputSelector = '.header__search input[name="q"]'),
+      (p.searchResultsSelector = ".header__search-results"),
+      (p.mobileMenuTriggerSelector = ".header__trigger-mobile-menu"),
+      (p.mobileMenuCloseTriggerSelector = ".header__mobile-menu-close-overlay"),
+      (p.mobileMenuContainerSelector = ".header__mobile-menu"),
+      (p.scrollThreshold = 50),
+      (p.menuLeaveThreshold = 300);
+    var g = s(69),
+      v = s.n(g);
+    class S {
+      constructor(e) {
+        (this.destroy = () => {
+          Object(u.a)(this.close, (e) => {
+            e.removeEventListener("click", this.onClose);
+          });
+        }),
+          (this.onClose = () => {
+            this.el &&
+              (v.a.set(S.cookieNamespace, "value", {
+                expires: S.cookieExpireDays,
+              }),
+              this.el.classList.remove("active"),
+              document.documentElement.classList.remove("of--hidden"),
+              setTimeout(() => {
+                this.el.classList.add("dn");
+              }, S.transitionTimeout));
+          }),
+          v.a.get(S.cookieNamespace) ||
+            (1 == GLOBALS.email_modal_only_on_home && "index" != TEMPLATE) ||
+            ((this.el = e),
+            (this.close = e.querySelectorAll(S.closeSelector)),
+            setTimeout(() => {
+              this.el.classList.remove("dn"),
+                document.documentElement.classList.add("of--hidden"),
+                setTimeout(() => {
+                  this.el.classList.add("active");
+                }, 50);
+            }, S.appearTimeout),
+            Object(u.a)(this.close, (e) => {
+              e.addEventListener("click", this.onClose);
+            }));
+      }
+    }
+    (S.domSelector = ".email-modal__container"),
+      (S.closeSelector = ".email-modal__close"),
+      (S.appearTimeout = 5e3),
+      (S.transitionTimeout = 300),
+      (S.cookieNamespace = "velvet_email_modal"),
+      (S.cookieExpireDays = 2);
+    class b {
+      constructor(e) {
+        (this.destroy = () => {
+          this.trigger.removeEventListener("click", this.onClickTrigger),
+            window.removeEventListener("resize", this.onResizeDrawer);
+        }),
+          (this.onClickTrigger = () => {
+            this.el.classList.toggle("active"), this.onResizeDrawer();
+          }),
+          (this.onResizeDrawer = () => {
+            if (this.el.classList.contains("active")) {
+              const e = this.contentEl.getBoundingClientRect().height;
+              this.heightEl.style.height = e + "px";
+            } else this.heightEl.style.height = "0px";
+          }),
+          (this.el = e),
+          (this.trigger = e.querySelector(b.triggerSelector)),
+          (this.heightEl = e.querySelector(b.heightSelector)),
+          (this.contentEl = e.querySelector(b.contentSelector)),
+          this.trigger.addEventListener("click", this.onClickTrigger),
+          window.addEventListener("resize", this.onResizeDrawer),
+          this.onResizeDrawer();
+      }
+    }
+    (b.domSelector = ".drawer"),
+      (b.triggerSelector = ".drawer__trigger"),
+      (b.heightSelector = ".drawer__height"),
+      (b.contentSelector = ".drawer__content");
+    var f = s(2);
+    const y =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var _ = s(102);
+    class L {
+      constructor(e) {
+        (this.destroy = () => {
+          this.el.removeEventListener("submit", this.onSubmit);
+        }),
+          (this.onSubmit = (e) => {
+            e.preventDefault(),
+              this.emailError.classList.add("dn"),
+              y.test(this.emailInput.value)
+                ? (this.submit.classList.add("loading"),
+                  Object(_.a)(L.listId, this.emailInput.value)
+                    .then((e) => {
+                      this.submit.classList.remove("loading"),
+                        this.emailError.classList.add("dn"),
+                        this.formContainer.classList.add("dn"),
+                        this.success.classList.remove("dn"),
+                        window.app.emailModal &&
+                          window.app.emailModal.onClose();
+                    })
+                    .catch((e) => {
+                      console.log(e),
+                        alert(
+                          "Uh oh. An error occured. Please try again later."
+                        ),
+                        this.submit.classList.remove("loading");
+                    }))
+                : this.emailError.classList.remove("dn");
+          }),
+          (this.el = e),
+          (this.emailInput = e.querySelector(L.emailSelector)),
+          (this.formContainer = e.querySelector(L.formSelector)),
+          (this.submit = e.querySelector(L.submitSelector)),
+          (this.success = e.querySelector(L.successSelector)),
+          (this.emailError = e.querySelector(L.emailErrorSelector)),
+          this.el.addEventListener("submit", this.onSubmit);
+      }
+    }
+    (L.domSelector = ".newsletter-form"),
+      (L.formSelector = ".newsletter-form__form"),
+      (L.emailSelector = 'input[name="email"]'),
+      (L.submitSelector = 'button[type="submit"]'),
+      (L.successSelector = ".newsletter-form__success"),
+      (L.emailErrorSelector = ".newsletter-form__email-error"),
+      (L.listId = GLOBALS.klaviyo_list_id);
+    var w = s(13);
+    class C {
+      constructor(e, t, s) {
+        (this.destroy = () => {
+          this.close.removeEventListener("click", this.onClose),
+            this.underlay.removeEventListener("click", this.onClose);
+        }),
+          (this.onOpen = () => {
+            this.el.classList.remove("dn"),
+              this.underlay.classList.remove("dn"),
+              document.documentElement.classList.add("of--hidden"),
+              setTimeout(() => {
+                this.el.classList.add("active"),
+                  this.underlay.classList.add("active");
+              }, 50);
+          }),
+          (this.onClose = () => {
+            this.el.classList.remove("active"),
+              this.underlay.classList.remove("active"),
+              document.documentElement.classList.remove("of--hidden"),
+              setTimeout(() => {
+                this.el.classList.add("dn"), this.underlay.classList.add("dn");
+              }, C.transitionTimeout);
+          }),
+          (this.el = e),
+          (this.underlay = t),
+          (this.close = e.querySelector(C.closeSelector)),
+          (this.triggers = s),
+          this.close.addEventListener("click", this.onClose),
+          this.underlay.addEventListener("click", this.onClose),
+          Object(u.a)(this.triggers, (e) => {
+            e.addEventListener("click", this.onOpen);
+          });
+      }
+    }
+    (C.domSelector = ".modal__container"),
+      (C.underlaySelector = ".modal__underlay"),
+      (C.closeSelector = ".modal__close"),
+      (C.triggerSelector = ".modal__trigger"),
+      (C.appearTimeout = 5e3),
+      (C.transitionTimeout = 300);
+    var O = s(0),
+      N = s(34),
+      k = s(37),
+      T = s(35),
+      E = s(3),
+      j = s.n(E),
+      x = s(4),
+      A = s.n(x),
+      q = s(55),
+      I = s.n(q),
+      P = s(36),
+      M = s(10),
+      V =
+        Object.assign ||
+        function (e) {
+          for (var t = 1; t < arguments.length; t++) {
+            var s = arguments[t];
+            for (var i in s)
+              Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i]);
+          }
+          return e;
+        },
+      z = Object(k.a)(
+        ({
+          globals: e,
+          cart: t,
+          isMiniCartOpen: s,
+          isHeaderScrolled: i,
+          pendingUpdateVariantId: r,
+        }) => ({
+          globals: e,
+          cart: t,
+          isMiniCartOpen: s,
+          isHeaderScrolled: i,
+          pendingUpdateVariantId: r,
+        }),
+        ({ updateVariantQuantity: e, setMiniCartOpen: t }) => ({
+          updateVariantQuantity: e,
+          setMiniCartOpen: t,
+        })
+      )(
+        ({
+          globals: e,
+          cart: t,
+          pendingUpdateVariantId: s,
+          updateVariantQuantity: i,
+          isMiniCartOpen: r,
+          isHeaderScrolled: o,
+          setMiniCartOpen: a,
+        }) => {
+          const n = A()(t.items, { variant_id: 31369376727121 }),
+            l = I()(t.items, (e) => 31369376727121 !== e.variant_id).map((e) =>
+              O.b.h(
+                "div",
+                { key: e.id + "_" + e.final_price, className: "mb1 mb2--md" },
+                O.b.h(
+                  T.a,
+                  V({}, e, {
+                    isPending: e.variant_id === s,
+                    isPullOut: !0,
+                    onUpdateQuantity: (t) => i(e.key, t),
+                    onRemove: () => i(e.key, 0),
+                  })
+                )
+              )
+            ),
+            c =
+              n &&
+              O.b.h(
+                "div",
+                { className: "mb1 mb2--md" },
+                O.b.h(P.a, V({}, n, { isPullOut: !0 }))
+              ),
+            d =
+              t.total_price / 100 >= e.freeShippingPrice
+                ? O.b.h(
+                    "p",
+                    { className: "basis--mono color--medium-gray-1 label mt1" },
+                    "Your order qualifies for free US shipping!"
+                  )
+                : O.b.h(
+                    "p",
+                    { className: "basis--mono color--medium-gray-1 label mt1" },
+                    Object(m.a)(100 * e.freeShippingPrice - t.total_price),
+                    " until Free US Shipping"
+                  ),
+            h = (t.total_price / 100 / e.freeShippingPrice) * 100,
+            u = O.b.h(
+              "div",
+              { className: "cart__progress-container of--hidden pe--none" },
+              O.b.h("div", {
+                key: h,
+                className: "cart__progress-bar",
+                style: { transform: `translate3d(-${100 - h}%, 0, 0)` },
+              })
+            ),
+            p = Object(M.a)(t.items),
+            g = window.TryNowSettings.url,
+            v = 4 - p,
+            S =
+              p > 0 &&
+              v > 0 &&
+              O.b.h(
+                "div",
+                { className: "mb1 mb2--md" },
+                O.b.h(
+                  "div",
+                  { className: "tn-cart-widget-container-sc" },
+                  "You can add ",
+                  O.b.h("b", null, v),
+                  " more items to your Try At Home order.",
+                  O.b.h(
+                    "a",
+                    { href: g, className: "tn-cart-widget-mobile-link" },
+                    " Keep shopping?"
+                  )
+                )
+              ),
+            RB = O.b.h(
+              "div",
+              { "data-rebuy-id": "22092" }
+            ),
+            b = O.b.h(
+              "div",
+              { className: "pl4--md pr4--md pl2 pr2 mt1" },
+              O.b.h(
+                "div",
+                { className: "row" },
+                O.b.h(
+                  "div",
+                  { className: "col c6" },
+                  O.b.h(
+                    "p",
+                    { className: "cart__header basis--menu" },
+                    "Your Cart"
+                  )
+                ),
+                O.b.h(
+                  "div",
+                  { className: "col c6" },
+                  O.b.h(
+                    "p",
+                    {
+                      className:
+                        "cart__header basis--mono color--medium-gray-1 label tr",
+                    },
+                    t.item_count,
+                    " ",
+                    1 === t.item_count ? "Item" : "Items"
+                  )
+                )
+              )
+            ),
+            f = Object(M.b)(t.items),
+            y =
+              0 === f
+                ? O.b.h(
+                    "p",
+                    { className: "basis-off label color--medium-gray-1" },
+                    Object(m.a)(t.total_price)
+                  )
+                : O.b.h(
+                    "p",
+                    { className: "basis-off label color--medium-gray-1 tr" },
+                    Object(m.a)(t.total_price - f),
+                    O.b.h("br", null),
+                    " ",
+                    O.b.h(
+                      "span",
+                      { className: "label--xsmall" },
+                      Object(m.a)(t.total_price),
+                      " ",
+                      "if kept"
+                    )
+                  );
+          return O.b.h(
+            "div",
+            null,
+            O.b.h(
+              "div",
+              {
+                className: j()("cart__mini-wrapper bg--white", {
+                  active: r,
+                  scrolled: o,
+                }),
+              },
+              O.b.h(
+                "div",
+                { className: "cart__main bt--gray-border" },
+                O.b.h(
+                  "div",
+                  { className: "p2 p4--md pt2--md pb0 pb0--md" },
+                  u,
+                  d
+                ),
+                b,
+                O.b.h(
+                  "div",
+                  {
+                    className: j()("p2 p4--md", {
+                      "pt3--md": 0 === f,
+                      "pt2--md pb10 pb8--md mb2": f > 0,
+                    }),
+                  },
+                  O.b.h("div", { className: "pb10 mb10" }, l, c, S, RB)
+                )
+              )
+            ),
+            O.b.h(
+              "div",
+              { className: j()("cart__footer bg--white", { active: r }) },
+              O.b.h(
+                "div",
+                {
+                  className: j()("bt--gray-border pl4--md pr4--md pl2 pr2", {
+                    "mt2 pt2 mb2": 0 === f,
+                    "pt1 mb1": f > 0,
+                  }),
+                },
+                O.b.h(
+                  "div",
+                  {
+                    className:
+                      "media media--horizontal media--reverse gutter--none",
+                  },
+                  O.b.h(
+                    "div",
+                    { className: "media__fluid" },
+                    O.b.h(
+                      "p",
+                      { className: "basis--smaller-title" },
+                      "Subtotal"
+                    )
+                  ),
+                  O.b.h("div", { className: "media__fixed" }, y)
+                ),
+                O.b.h(
+                  "p",
+                  { className: "basis-off label--small color--medium-gray-2" },
+                  "Shipping & taxes calculated at checkout."
+                ),
+                f > 0 &&
+                  O.b.h(
+                    "p",
+                    {
+                      className: "basis-off label--small color--medium-gray-2",
+                    },
+                    "A hold will be placed on your card and reauthorized, but you will only pay for what you keep."
+                  )
+              ),
+              O.b.h(
+                "div",
+                { className: "pl4--md pr4--md pl2 pr2" },
+                O.b.h(
+                  "div",
+                  { className: j()({ mb2: 0 === f, mb1: f > 0 }) },
+                  O.b.h(
+                    "a",
+                    {
+                      className: "button--black full-width",
+                      title: "Checkout",
+                      href: "/cart",
+                    },
+                    "Checkout"
+                  )
+                ),
+                O.b.h(
+                  "label",
+                  {
+                    className:
+                      "label mb2 full--width db tc color--medium-gray-1",
+                  },
+                  e.shippingNote
+                )
+              )
+            )
+          );
+        }
+      );
+    class D {
+      constructor(e, t, s, i, r) {
+        (this.destroy = () => {
+          this.store.unlisten(this.onStoreUpdate),
+            Object(u.a)(this.triggers, (e) => {
+              e.removeEventListener("click", this.onToggleCart);
+            }),
+            this.underlay.removeEventListener("click", this.onToggleCart),
+            Object(O.c)(null, this.mountNode, this.mountedCart);
+        }),
+          (this.onToggleCart = () => {
+            const e = this.store.getState().isMiniCartOpen;
+            this.store.setMiniCartOpen(!e);
+          }),
+          (this.onStoreUpdate = (e, t) => {
+            e.cart.item_count !== t.cart.item_count &&
+              Object(u.a)(this.itemCounts, (t) => {
+                t.innerHTML = e.cart.item_count;
+              }),
+              e.isHeaderScrolled !== t.isHeaderScrolled &&
+                (e.isHeaderScrolled
+                  ? this.underlay.classList.add("scrolled")
+                  : this.underlay.classList.remove("scrolled")),
+              e.isMiniCartOpen !== t.isMiniCartOpen &&
+                (e.isMiniCartOpen
+                  ? (this.store.fetchCart(),
+                    this.underlay.classList.remove("dn"),
+                    setTimeout(() => {
+                      this.underlay.classList.add("active");
+                    }, 50),
+                    Object(u.a)(this.triggers, (e) => {
+                      e.classList.add("active");
+                    }),
+                    document.documentElement.classList.add("of--hidden"))
+                  : (this.underlay.classList.remove("active"),
+                    setTimeout(() => {
+                      this.underlay.classList.add("dn");
+                    }, D.underlayTransition),
+                    Object(u.a)(this.triggers, (e) => {
+                      e.classList.remove("active");
+                    }),
+                    document.documentElement.classList.remove("of--hidden")));
+          }),
+          (this.mountNode = e),
+          (this.triggers = t),
+          (this.itemCounts = s),
+          (this.underlay = i),
+          (this.store = r),
+          this.store.listen(this.onStoreUpdate),
+          Object(u.a)(this.triggers, (e) => {
+            e.addEventListener("click", this.onToggleCart);
+          }),
+          this.underlay.addEventListener("click", this.onToggleCart),
+          this.store.getState().isHeaderScrolled &&
+            this.underlay.classList.add("scrolled"),
+          (this.mountedCart = Object(O.c)(
+            O.b.h(N.a, { store: r }, O.b.h(z, null)),
+            this.mountNode
+          ));
+      }
+    }
+    (D.mountSelector = ".cart-menu-mount"),
+      (D.triggerSelector = ".cart__trigger"),
+      (D.itemCountSelector = ".cart__item-count"),
+      (D.underlaySelector = ".cart__underlay"),
+      (D.underlayTransition = 500);
+    var B = s(9),
+      F = s.n(B);
+    s(21);
+    class R {
+      constructor(e) {
+        (this.destroy = () => {
+          this.carousel && this.carousel.destroy(),
+            this.previous &&
+              this.next &&
+              (this.previous.removeEventListener("click", this.onClickPrevious),
+              this.next.removeEventListener("click", this.onClickNext));
+        }),
+          (this.onClickPrevious = () => {
+            this.carousel && this.carousel.previous();
+          }),
+          (this.onClickNext = () => {
+            this.carousel && this.carousel.next();
+          }),
+          (this.el = e),
+          this.el &&
+            ((this.carouselContainer = e.querySelector(
+              R.carouselContainerSelector
+            )),
+            (this.previous = e.querySelector(R.previousSelector)),
+            (this.next = e.querySelector(R.nextSelector)),
+            this.carouselContainer.childElementCount > 1 &&
+              ((this.carousel = new F.a(this.carouselContainer, {
+                cellAlign: "left",
+                contain: !1,
+                wrapAround: !0,
+                prevNextButtons: !1,
+                pageDots: !1,
+                selectedAttraction: 0.1,
+                friction: 0.8,
+              })),
+              this.previous.addEventListener("click", this.onClickPrevious),
+              this.next.addEventListener("click", this.onClickNext)));
+      }
+    }
+    (R.domSelector = ".about__story"),
+      (R.carouselContainerSelector = ".carousel__slides"),
+      (R.previousSelector = ".carousel__previous"),
+      (R.nextSelector = ".carousel__next");
+    class H {
+      constructor(e) {
+        (this.destroy = () => {
+          this.carousel && this.carousel.destroy(),
+            this.previous &&
+              this.next &&
+              (this.previous.removeEventListener("click", this.onClickPrevious),
+              this.next.removeEventListener("click", this.onClickNext));
+        }),
+          (this.onClickPrevious = () => {
+            this.carousel && this.carousel.previous();
+          }),
+          (this.onClickNext = () => {
+            this.carousel && this.carousel.next();
+          }),
+          (this.el = e),
+          this.el &&
+            ((this.carouselContainer = e.querySelector(
+              H.carouselContainerSelector
+            )),
+            (this.previous = e.querySelector(H.previousSelector)),
+            (this.next = e.querySelector(H.nextSelector)),
+            this.carouselContainer.childElementCount > 1 &&
+              ((this.carousel = new F.a(this.carouselContainer, {
+                cellAlign: "left",
+                contain: !1,
+                wrapAround: !0,
+                prevNextButtons: !1,
+                pageDots: !0,
+                selectedAttraction: 0.1,
+                friction: 0.8,
+              })),
+              this.previous.addEventListener("click", this.onClickPrevious),
+              this.next.addEventListener("click", this.onClickNext)));
+      }
+    }
+    (H.domSelector = ".craft__fabrics"),
+      (H.carouselContainerSelector = ".carousel__slides"),
+      (H.previousSelector = ".carousel__previous"),
+      (H.nextSelector = ".carousel__next");
+    class $ {
+      constructor(e) {
+        (this.destroy = () => {
+          this.carousel && this.carousel.destroy(),
+            this.previous &&
+              this.next &&
+              (this.previous.removeEventListener("click", this.onClickPrevious),
+              this.next.removeEventListener("click", this.onClickNext));
+        }),
+          (this.onClickPrevious = () => {
+            this.carousel && this.carousel.previous();
+          }),
+          (this.onClickNext = () => {
+            this.carousel && this.carousel.next();
+          }),
+          (this.el = e),
+          this.el &&
+            ((this.carouselContainer = e.querySelector(
+              $.carouselContainerSelector
+            )),
+            (this.previous = e.querySelector($.previousSelector)),
+            (this.next = e.querySelector($.nextSelector)),
+            this.carouselContainer.childElementCount > 1 &&
+              ((this.carousel = new F.a(this.carouselContainer, {
+                cellAlign: "center",
+                contain: !1,
+                wrapAround: !0,
+                prevNextButtons: !1,
+                pageDots: !1,
+                selectedAttraction: 0.1,
+                friction: 0.8,
+              })),
+              this.previous.addEventListener("click", this.onClickPrevious),
+              this.next.addEventListener("click", this.onClickNext)));
+      }
+    }
+    ($.domSelector = ".craft__partners"),
+      ($.carouselContainerSelector = ".carousel__slides"),
+      ($.previousSelector = ".carousel__previous"),
+      ($.nextSelector = ".carousel__next");
+    class U {
+      constructor(e) {
+        (this.destroy = () => {
+          this.carousel && this.carousel.destroy();
+        }),
+          (this.destroy = () => {
+            this.carousel && this.carousel.destroy(),
+              this.previous &&
+                this.next &&
+                (this.previous.removeEventListener(
+                  "click",
+                  this.onClickPrevious
+                ),
+                this.next.removeEventListener("click", this.onClickNext));
+          }),
+          (this.onClickPrevious = () => {
+            this.carousel && this.carousel.previous();
+          }),
+          (this.onClickNext = () => {
+            this.carousel && this.carousel.next();
+          }),
+          (this.el = e),
+          this.el &&
+            ((this.carouselContainer = e.querySelector(
+              U.carouselContainerSelector
+            )),
+            (this.previous = e.querySelector(U.previousSelector)),
+            (this.next = e.querySelector(U.nextSelector)),
+            this.carouselContainer.childElementCount > 1
+              ? ((this.carousel = new F.a(this.carouselContainer, {
+                  cellAlign: "center",
+                  contain: !1,
+                  wrapAround: !0,
+                  prevNextButtons: !1,
+                  pageDots: !1,
+                  selectedAttraction: 0.1,
+                  friction: 0.8,
+                })),
+                this.previous.addEventListener("click", this.onClickPrevious),
+                this.next.addEventListener("click", this.onClickNext))
+              : (this.previous.classList.add("dn"),
+                this.next.classList.add("dn")));
+      }
+    }
+    (U.domSelector = ".craft__image-text"),
+      (U.carouselContainerSelector = ".carousel__slides"),
+      (U.previousSelector = ".carousel__previous"),
+      (U.nextSelector = ".carousel__next");
+    class G {
+      constructor(e, t, s) {
+        (this.destroy = () => {
+          this.close.removeEventListener("click", this.onClose),
+            this.underlay.removeEventListener("click", this.onClose);
+        }),
+          (this.onOpen = () => {
+            this.el.classList.remove("dn"),
+              this.underlay.classList.remove("dn"),
+              document.documentElement.classList.add("of--hidden"),
+              setTimeout(() => {
+                this.el.classList.add("active"),
+                  this.underlay.classList.add("active");
+              }, 50);
+          }),
+          (this.onClose = () => {
+            this.el.classList.remove("active"),
+              this.underlay.classList.remove("active"),
+              document.documentElement.classList.remove("of--hidden"),
+              setTimeout(() => {
+                this.el.classList.add("dn"), this.underlay.classList.add("dn");
+              }, G.transitionTimeout);
+          }),
+          (this.el = e),
+          (this.underlay = t),
+          (this.close = e.querySelectorAll(G.closeSelector)),
+          (this.triggers = s),
+          this.underlay.addEventListener("click", this.onClose),
+          Object(u.a)(this.close, (e) => {
+            e.addEventListener("click", this.onClose);
+          }),
+          Object(u.a)(this.triggers, (e) => {
+            e.addEventListener("click", this.onOpen);
+          });
+      }
+    }
+    (G.domSelector = ".trynow-modal__container"),
+      (G.underlaySelector = ".trynow-modal__underlay"),
+      (G.closeSelector = ".trynow-modal__close"),
+      (G.triggerSelector = ".trynow-modal__trigger"),
+      (G.appearTimeout = 5e3),
+      (G.transitionTimeout = 300);
+    var Q = s(6);
+    setTimeout(() => {
+      setTimeout(() => {
+        document.documentElement.classList.remove("disable-transitions");
+      });
+    }),
+      (f.a.store = Object(i.a)()),
+      (f.a.headerComponent = new p(
+        document.querySelector(p.domSelector),
+        f.a.store
+      )),
+      (f.a.aboutStoryCarousel = new R(document.querySelector(R.domSelector))),
+      (f.a.craftFabricCarousel = new H(document.querySelector(H.domSelector))),
+      (f.a.craftPartnersCarousel = new $(
+        document.querySelector($.domSelector)
+      )),
+      (f.a.craftImageTextCarousel = new U(
+        document.querySelector(U.domSelector)
+      )),
+      (f.a.cart = new D(
+        document.querySelector(D.mountSelector),
+        document.querySelectorAll(D.triggerSelector),
+        document.querySelectorAll(D.itemCountSelector),
+        document.querySelector(D.underlaySelector),
+        f.a.store
+      )),
+      (f.a.anchorLinks = Object(u.a)(
+        document.querySelectorAll(n.domSelector),
+        (e) => new n(e)
+      )),
+      (f.a.drawers = Object(u.a)(
+        document.querySelectorAll(b.domSelector),
+        (e) => new b(e)
+      )),
+      (f.a.productCards = Object(u.a)(
+        document.querySelectorAll(w.a.domSelector),
+        (e) => new w.a(e, f.a.store)
+      )),
+      document.querySelector(S.domSelector) &&
+        (f.a.emailModal = new S(
+          document.querySelector(S.domSelector),
+          document.querySelector(S.underlaySelector)
+        )),
+      (f.a.klaviyoForms = Object(u.a)(
+        document.querySelectorAll(L.domSelector),
+        (e) => new L(e)
+      )),
+      (f.a.modals = []),
+      Object(u.a)(document.querySelectorAll(C.domSelector), (e) => {
+        const t = document.querySelector(
+            `${C.underlaySelector}[data-modal="${e.dataset.modal}"]`
+          ),
+          s = document.querySelectorAll(
+            `${C.triggerSelector}[data-modal="${e.dataset.modal}"]`
+          );
+        t && s.length > 0 && f.a.modals.push(new C(e, t, s));
+      }),
+      Object(u.a)(document.querySelectorAll(G.domSelector), (e) => {
+        const t = document.querySelector(
+            `${G.underlaySelector}[data-modal="${e.dataset.modal}"]`
+          ),
+          s = document.querySelectorAll(
+            `${G.triggerSelector}[data-modal="${e.dataset.modal}"]`
+          );
+        t && s.length > 0 && f.a.modals.push(new G(e, t, s));
+      }),
+      (f.a.accountMenu = new r(document.querySelector(r.domSelector))),
+      (f.a.collectionFilter = new Q.a(
+        document.querySelector(Q.a.gridSelector),
+        document.querySelectorAll(Q.a.filterInputSelector),
+        document.querySelector(Q.a.filterContainerSelector),
+        document.querySelectorAll(Q.a.filterToggleSelector),
+        document.querySelectorAll(Q.a.clearFiltersSelector),
+        document.querySelectorAll(Q.a.cancelFiltersSelector),
+        document.querySelectorAll(Q.a.itemsPerRowSelector),
+        document.querySelectorAll(Q.a.sortSelector),
+        document.querySelector(Q.a.loadMoreSelector),
+        document.querySelector(Q.a.loadingSelector),
+        f.a.store
+      )),
+      (f.a.tieredGiftCard = new (class {
+        constructor(e) {
+          (this.destroy = () => {
+            this.appStore.unlisten(this.onAppStoreChange);
+          }),
+            (this.onAppStoreChange = (e, t) => {
+              if (
+                GLOBALS.tiered_gift_card_enabled &&
+                t.pendingAddVariantId != GLOBALS.gift_card_variant_id &&
+                t.pendingUpdateVariantId != GLOBALS.gift_card_variant_id &&
+                (t.pendingAddVariantId ||
+                  t.pendingUpdateVariantId ||
+                  (e.isMiniCartOpen && !t.isMiniCartOpen))
+              ) {
+                const t = this.neededGiftCards(e.cart);
+                0 == this.currentGiftCardQty(e.cart)
+                  ? t > 0 &&
+                    this.appStore
+                      .addVariant(GLOBALS.gift_card_variant_id, t)
+                      .then(() => this.appStore.fetchCart())
+                  : this.appStore.updateVariantQuantity(
+                      GLOBALS.gift_card_variant_id,
+                      t
+                    );
+              }
+            }),
+            (this.currentCartValue = (e) => {
+              let t = 0;
+              return (
+                e.items.forEach((e) => {
+                  e.variant_id != GLOBALS.gift_card_variant_id &&
+                    (t += e.final_line_price);
+                }),
+                t
+              );
+            }),
+            (this.currentGiftCardQty = (e) => {
+              let t = 0;
+              return (
+                e.items.forEach((e) => {
+                  e.variant_id == GLOBALS.gift_card_variant_id &&
+                    (t += e.quantity);
+                }),
+                t
+              );
+            }),
+            (this.neededGiftCards = (e) =>
+              Math.floor(
+                this.currentCartValue(e) / GLOBALS.gift_card_threshold_cents
+              )),
+            (this.appStore = e),
+            this.appStore.listen(this.onAppStoreChange);
+        }
+      })(f.a.store));
+  },
+  23: function (e, t, s) {
+    "use strict";
+    t.a = (e) => {
+      const t = e.getBoundingClientRect();
+      return (
+        t.bottom >= 0 &&
+        t.left >= 0 &&
+        t.right <=
+          (window.innerWidth || document.documentElement.clientWidth) &&
+        t.top <= (window.innerHeight || document.documentElement.clientHeight)
+      );
+    };
+  },
+  31: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      s.d(t, "b", function () {
+        return o;
+      }),
+        s.d(t, "a", function () {
+          return a;
+        }),
+        s.d(t, "d", function () {
+          return n;
+        }),
+        s.d(t, "c", function () {
+          return l;
+        });
+      var i =
+        Object.assign ||
+        function (e) {
+          for (var t = 1; t < arguments.length; t++) {
+            var s = arguments[t];
+            for (var i in s)
+              Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i]);
+          }
+          return e;
+        };
+      const r = e.fetch,
+        o = () => r("/cart.json"),
+        a = (e, t = 1, s = {}) =>
+          r("/cart/add.js", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(i({}, s, { id: e, quantity: t })),
+          }),
+        n = (e, t = 1) =>
+          r("/cart/change.js", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: "" + e, quantity: t }),
+          }),
+        l = (e = {}) =>
+          r("/cart/update.js", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ attributes: e }),
+          });
+    }.call(this, s(15)));
+  },
+  34: function (e, t, s) {
+    "use strict";
+    const i = function (e) {
+      this.getChildContext = () => ({ store: e.store });
+    };
+    (i.prototype.render = (e) => e.children[0]), (t.a = i);
+  },
+  35: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      s.d(t, "a", function () {
+        return c;
+      });
+      var i = s(0),
+        r = s(3),
+        o = s.n(r),
+        a = s(5),
+        n = s(10);
+      const l = e.fetch;
+      class c extends i.a {
+        render({
+          title: e,
+          image: t,
+          url: s,
+          quantity: r,
+          discounted_price: c,
+          handle: d,
+          isPending: h,
+          isPullOut: u,
+          onUpdateQuantity: m,
+          onRemove: p,
+          properties: g,
+          discounts: v,
+          id: S,
+          price: b,
+        }) {
+          const f = e.split(" - "),
+            y = S == GLOBALS.gift_card_variant_id && 0 == c;
+          this.fetchInProgress ||
+            this.state.compare_at_price ||
+            ((this.fetchInProgress = !0),
+            l("/products/" + d + ".js", { method: "GET" })
+              .then((e) => e.json())
+              .then((e) => {
+                this.setState({ compare_at_price: e.compare_at_price });
+              }));
+          let _ = null;
+          v &&
+            !y &&
+            (_ = v.map((e) =>
+              i.b.h(
+                "span",
+                { className: "bassis--off label--small", key: e.title },
+                e.title
+              )
+            )),
+            y && (s = null);
+          const L = Object(a.a)(c * r),
+            w = Object(n.c)({ properties: g }),
+            C = w
+              ? i.b.h(
+                  "div",
+                  { className: "col c8 trynow-sc-prices" },
+                  i.b.h(
+                    "span",
+                    { className: "basis--off label--small dbi ml2" },
+                    "$0"
+                  ),
+                  w &&
+                    i.b.h(
+                      "span",
+                      { className: "label--xsmall" },
+                      i.b.h("br", null),
+                      i.b.h("span", { className: "ml2" }, L + " if kept")
+                    )
+                )
+              : y
+              ? i.b.h(
+                  "div",
+                  { className: "col c8" },
+                  i.b.h(
+                    "span",
+                    { className: "basis--off label--small dbi ml2" },
+                    "$0",
+                    i.b.h(
+                      "span",
+                      {
+                        className:
+                          "ml1 label--small color--medium-gray-2 line-through",
+                      },
+                      Object(a.a)(b * r)
+                    )
+                  )
+                )
+              : i.b.h(
+                  "div",
+                  { className: "col c8" },
+                  i.b.h(
+                    "span",
+                    { className: "basis--off label--small dbi ml2" },
+                    L,
+                    i.b.h(
+                      "span",
+                      {
+                        className:
+                          "ml1 label--small color--medium-gray-2 line-through",
+                      },
+                      this.state.compare_at_price &&
+                        this.state.compare_at_price != c
+                        ? Object(a.a)(this.state.compare_at_price * r)
+                        : ""
+                    )
+                  )
+                );
+          return i.b.h(
+            "div",
+            {
+              className:
+                "cart__item media media--horizontal media--forward gutter--none of--hidden",
+            },
+            i.b.h(
+              "div",
+              { className: "media__fixed" },
+              i.b.h(
+                "a",
+                {
+                  href: s,
+                  title: e,
+                  className: o()("db", {
+                    "cart__item__image--pullout": u,
+                    cart__item__image: !u,
+                  }),
+                },
+                i.b.h(
+                  "span",
+                  { className: "db image size--5x7" },
+                  i.b.h(
+                    "picture",
+                    { className: "image--round-corners" },
+                    i.b.h("img", { alt: e, src: t })
+                  )
+                )
+              )
+            ),
+            i.b.h(
+              "div",
+              { className: "media__fluid" },
+              i.b.h(
+                "div",
+                {
+                  className: o()("media media--vertical media--reverse pl1", {
+                    cart__item__height: !u,
+                    "cart__item__height--pullout": u,
+                  }),
+                },
+                i.b.h(
+                  "div",
+                  { className: "media__fluid" },
+                  i.b.h(
+                    "div",
+                    { className: "media media--horizontal media--reverse" },
+                    i.b.h(
+                      "div",
+                      { className: "media__fluid" },
+                      w &&
+                        i.b.h(
+                          "p",
+                          {
+                            className:
+                              "basis--small-title color--medium-gray-2 trynow-sc-athome",
+                          },
+                          "Try At Home"
+                        ),
+                      i.b.h(
+                        "p",
+                        { className: o()("basis--small-title", { mt2: !w }) },
+                        i.b.h(
+                          "a",
+                          {
+                            className: o()({ "link--underline-hover": !y }),
+                            href: s,
+                          },
+                          f[0]
+                        )
+                      ),
+                      i.b.h(
+                        "div",
+                        { className: "row" },
+                        i.b.h(
+                          "div",
+                          { className: "col c4" },
+                          i.b.h(
+                            "p",
+                            {
+                              className:
+                                "bassis--off label--small ws--pre-line",
+                            },
+                            f[1] || f[0]
+                          )
+                        ),
+                        C
+                      ),
+                      i.b.h("div", null, _),
+                      i.b.h(
+                        "div",
+                        { className: "mt1" },
+                        i.b.h(
+                          "div",
+                          {
+                            className: "media media--horizontal media--reverse",
+                          },
+                          i.b.h(
+                            "div",
+                            { className: "media__fluid" },
+                            i.b.h(
+                              "ul",
+                              {
+                                className:
+                                  "cart__item__quantity-input list list--horizontal list--forward gutter--none ",
+                              },
+                              i.b.h(
+                                "li",
+                                { className: "list__item" },
+                                i.b.h("button", {
+                                  type: "button",
+                                  name: "subtract",
+                                  className: o()("cart__item__subtract db", {
+                                    loading: h,
+                                  }),
+                                  onClick: () => m(r - 1),
+                                  disabled: h || 1 === r || y,
+                                })
+                              ),
+                              i.b.h(
+                                "li",
+                                { className: "list__item" },
+                                i.b.h(
+                                  "p",
+                                  {
+                                    className:
+                                      "cart__item__quantity label--xsmall basis-off bg--beige-3 ml1 mr1",
+                                  },
+                                  r
+                                )
+                              ),
+                              i.b.h(
+                                "li",
+                                { className: "list__item" },
+                                i.b.h("button", {
+                                  type: "button",
+                                  name: "add",
+                                  className: o()("cart__item__add db", {
+                                    loading: h,
+                                  }),
+                                  onClick: () => m(r + 1),
+                                  disabled: h || y,
+                                })
+                              )
+                            )
+                          )
+                        )
+                      )
+                    ),
+                    i.b.h(
+                      "div",
+                      { className: "media__fixed" },
+                      i.b.h("button", {
+                        type: "button",
+                        name: "remove",
+                        className: o()("cart__item__remove", {
+                          loading: h,
+                          dn: y,
+                        }),
+                        onClick: p,
+                        disabled: h,
+                      })
+                    )
+                  )
+                )
+              )
+            )
+          );
+        }
+      }
+    }.call(this, s(15)));
+  },
+  36: function (e, t, s) {
+    "use strict";
+    var i = s(0),
+      r = s(3),
+      o = s.n(r),
+      a = s(5);
+    t.a = ({
+      title: e,
+      image: t,
+      url: s,
+      quantity: r,
+      discounted_price: n,
+      isPending: l,
+      isPullOut: c,
+      onUpdateQuantity: d,
+      onRemove: h,
+      properties: u,
+    }) =>
+      i.b.h(
+        "div",
+        {
+          className:
+            "cart__item media media--horizontal media--forward gutter--none of--hidden",
+        },
+        i.b.h(
+          "div",
+          { className: "media__fixed" },
+          i.b.h(
+            "div",
+            {
+              className: o()("db", {
+                "cart__item__image--pullout--gift": c,
+                "cart__item__image--gift": !c,
+              }),
+            },
+            i.b.h(
+              "span",
+              { className: "db image size--1x1" },
+              i.b.h("picture", null, i.b.h("img", { alt: e, src: t }))
+            )
+          )
+        ),
+        i.b.h(
+          "div",
+          { className: "media__fluid" },
+          i.b.h(
+            "div",
+            {
+              className: o()("media media--vertical media--reverse pl1 pt1", {
+                "cart__item__height--gift": !c,
+                "cart__item__height--pullout--gift": c,
+              }),
+            },
+            i.b.h(
+              "div",
+              { className: "media__fluid" },
+              i.b.h(
+                "div",
+                { className: "media media--horizontal media--reverse" },
+                i.b.h(
+                  "div",
+                  { className: "media__fluid" },
+                  i.b.h(
+                    "p",
+                    { className: "folio--xsmall-black-title" },
+                    i.b.h(
+                      "a",
+                      { className: "link--underline-hover", href: s },
+                      e
+                    )
+                  ),
+                  i.b.h(
+                    "p",
+                    {
+                      className: "folio--small-uppercase ws--pre-line",
+                      style: { maxWidth: 280 },
+                    },
+                    "Includes tissue, ribbon, & blank holiday greeting card."
+                  )
+                )
+              )
+            ),
+            i.b.h(
+              "div",
+              { className: "media__fixed" },
+              i.b.h(
+                "div",
+                { className: "media media--horizontal media--reverse" },
+                i.b.h("div", { className: "media__fluid" }),
+                i.b.h(
+                  "div",
+                  { className: "media__fixed" },
+                  i.b.h(
+                    "p",
+                    { className: "sans--cart-title" },
+                    Object(a.b)(n * r)
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+  },
+  37: function (e, t, s) {
+    "use strict";
+    var i = s(0),
+      r =
+        Object.assign ||
+        function (e) {
+          for (var t = 1; t < arguments.length; t++) {
+            var s = arguments[t];
+            for (var i in s)
+              Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i]);
+          }
+          return e;
+        };
+    const o = () => {};
+    t.a =
+      (e = o, t = o) =>
+      (s) =>
+        (function (e) {
+          function t() {
+            i.a.apply(this, arguments);
+            for (let t in e)
+              "render" !== t &&
+                "function" == typeof e[t] &&
+                (this[t] = e[t].bind(this));
+            e.init && e.init.call(this),
+              (this.state =
+                (this.getInitialState && this.getInitialState()) || {});
+          }
+          return (
+            (t.prototype = Object.assign(Object.create(i.a.prototype), e)),
+            (t.prototype.constructor = t),
+            t
+          );
+        })({
+          getInitialState() {
+            const s = e(this.context.store.getState(), this.props),
+              i = t(this.context.store, this.props);
+            return r({}, s, i);
+          },
+          componentWillMount() {
+            this.context.store.listen(this.updateState);
+          },
+          componentWillUnmount() {
+            this.context.store.unlisten(this.updateState);
+          },
+          componentWillReceiveProps(e) {
+            this.setState(t(this.context.store, e));
+          },
+          updateState() {
+            this.setState(e(this.context.store.getState(), this.props));
+          },
+          render() {
+            return i.b.h(s, r({}, this.state, this.props));
+          },
+        });
+  },
+  5: function (e, t, s) {
+    "use strict";
+    s.d(t, "a", function () {
+      return i;
+    }),
+      s.d(t, "b", function () {
+        return r;
+      });
+    const i = (e) =>
+        (e / 100) % 1 == 0 ? "$" + e / 100 : "$" + (e / 100).toFixed(2),
+      r = (e) => "$" + (e / 100).toFixed();
+  },
+  6: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      s.d(t, "a", function () {
+        return u;
+      });
+      var i = s(13),
+        r = s(12),
+        o = s(1),
+        a = s(23),
+        n = s(19),
+        l = s.n(n),
+        c = s(56),
+        d = s.n(c);
+      const h = e.fetch;
+      class u {
+        constructor(e, t, s, i, a, n, c, h, u, p, g) {
+          if (
+            (m.call(this),
+            (this.gridEl = e),
+            (this.filterInputs = t),
+            (this.filterToggleButtons = i),
+            (this.filterContainer = s),
+            (this.filterClearButtons = a),
+            (this.filterCancelButtons = n),
+            (this.itemsPerRowDropdowns = c),
+            (this.sortDropdowns = h),
+            (this.loadMoreButton = u),
+            (this.loadingSpinner = p),
+            (this.appStore = g),
+            !this.loadMoreButton)
+          )
+            return;
+          const v = l.a.parse(window.location);
+          (this.lazyLoadedProductCards = []),
+            (this.endOfList = !1),
+            (this.store = Object(r.a)({
+              isLoadingNextPage: !1,
+              isShowingFilters: !1,
+              itemsPerRow: 4,
+              pageNumber: 1,
+              sortBy: v.sort_by || "featured",
+              activeTags: v.tags ? v.tags.split(",") : [],
+              lastActiveTags: v.tags ? v.tags.split(",") : [],
+            })),
+            (this.filterListeners = Object(o.a)(this.filterInputs, (e) => {
+              const t = () => {
+                const t = this.store.getState().activeTags,
+                  s = e.value;
+                t.indexOf(s) > -1
+                  ? this.store.setState({ activeTags: d()(t, s) })
+                  : this.store.setState({ activeTags: [...t, s] });
+              };
+              return e.addEventListener("change", t), t;
+            })),
+            (this.itemPerRowListeners = Object(o.a)(
+              this.itemsPerRowDropdowns,
+              (e) => {
+                const t = () => {
+                  this.store.setState({ itemsPerRow: Number(e.value) });
+                };
+                return e.addEventListener("change", t), t;
+              }
+            )),
+            (this.sortListeners = Object(o.a)(this.sortDropdowns, (e) => {
+              const t = () => {
+                const t = l.a.parse(window.location.search);
+                t.q
+                  ? (window.location = `${window.location.pathname}?q=${t.q}&sort_by=${e.value}`)
+                  : (window.location = `${window.location.pathname}?sort_by=${e.value}`);
+              };
+              return e.addEventListener("change", t), t;
+            })),
+            Object(o.a)(this.filterToggleButtons, (e) => {
+              e.addEventListener("click", this.toggleFilters);
+            }),
+            Object(o.a)(this.filterClearButtons, (e) => {
+              e.addEventListener("click", this.clearFilters);
+            }),
+            Object(o.a)(this.filterCancelButtons, (e) => {
+              e.addEventListener("click", this.cancelFilters);
+            }),
+            window.addEventListener("scroll", this.onScroll),
+            this.store.listen(this.onStoreUpdate);
+        }
+      }
+      (u.gridItemPromoSelector = '[data-enable-column-width="false"]'),
+        (u.gridItemVariableWidthSelector = '[data-enable-column-width="true"]'),
+        (u.gridSelector = ".collection__grid"),
+        (u.itemSelector = ".collection__item"),
+        (u.filterInputSelector = ".filter__tag-input"),
+        (u.filterToggleSelector = ".filter__toggle"),
+        (u.filterContainerSelector = ".collection__filters-container"),
+        (u.clearFiltersSelector = ".filter__clear"),
+        (u.cancelFiltersSelector = ".filter__cancel"),
+        (u.sortDropdownSelector = ".collection__sort"),
+        (u.columnSizeSelector = ".collection__column-size"),
+        (u.itemsPerRowSelector = ".collection__item-per-row-select"),
+        (u.loadMoreSelector = ".collection__load-more"),
+        (u.loadingSelector = ".collection__loading"),
+        (u.sortSelector = ".collection__sort-by-select");
+      var m = function () {
+        (this.destroy = () => {
+          Object(o.a)(this.filterInputs, (e, t) => {
+            const s = this.filterListeners[t];
+            e.removeEventListener("change", s);
+          }),
+            Object(o.a)(this.itemsPerRowDropdowns, (e, t) => {
+              const s = this.itemPerRowListeners[t];
+              e.removeEventListener("change", s);
+            }),
+            Object(o.a)(this.sortDropdowns, (e, t) => {
+              const s = this.sortListeners[t];
+              e.removeEventListener("change", s);
+            }),
+            Object(o.a)(this.filterToggleButtons, (e) => {
+              e.removeEventListener("click", this.toggleFilters);
+            }),
+            Object(o.a)(this.filterClearButtons, (e) => {
+              e.removeEventListener("click", this.clearFilters);
+            }),
+            Object(o.a)(this.filterCancelButtons, (e) => {
+              e.removeEventListener("click", this.cancelFilters);
+            }),
+            window.removeEventListener("scroll", this.onScroll),
+            this.store.unlisten(this.onStoreUpdate);
+        }),
+          (this.onScroll = () => {
+            this.store.getState().isLoadingNextPage ||
+              this.endOfList ||
+              (Object(a.a)(this.loadMoreButton) && this.fetchNextPage());
+          }),
+          (this.toggleFilters = () => {
+            this.store.setState({
+              isShowingFilters: !this.store.getState().isShowingFilters,
+              lastActiveTags: this.store.getState().activeTags,
+            });
+          }),
+          (this.clearFilters = () => {
+            this.store.setState({ isShowingFilters: !1, activeTags: [] });
+          }),
+          (this.cancelFilters = () => {
+            this.store.setState({
+              isShowingFilters: !1,
+              activeTags: this.store.getState().lastActiveTags,
+            });
+          }),
+          (this.fetchNextPage = () => {
+            const e = l.a.parse(window.location.search);
+            var t = this.store.getState();
+            const s = t.pageNumber,
+              r = t.sortBy,
+              a = s + 1;
+            let n = `${window.location.pathname}?page=${a}&sort_by=${r}&type=product`;
+            e.q && (n += "&q=" + e.q),
+              this.store.setState({ isLoadingNextPage: !0 }),
+              h(n)
+                .then((e) => e.text())
+                .then((e) => {
+                  const t = document.createElement("div");
+                  t.innerHTML = e;
+                  const s = t
+                    .querySelector(u.gridSelector)
+                    .querySelectorAll(u.itemSelector);
+                  0 == s.length && (this.endOfList = !0),
+                    Object(o.a)(s, (e) => {
+                      const t = e.querySelector(i.a.domSelector);
+                      this.gridEl.appendChild(e),
+                        t &&
+                          this.lazyLoadedProductCards.push(
+                            new i.a(t, this.appStore)
+                          );
+                    }),
+                    this.processFilteredItems(),
+                    this.store.setState({
+                      pageNumber: a,
+                      isLoadingNextPage: !1,
+                    });
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+          }),
+          (this.onStoreUpdate = (e, t) => {
+            this.processFilteredItems(),
+              this.processFilteredInputs(),
+              this.processContainer(),
+              this.processItemColumns(),
+              this.processLoadingButton();
+          }),
+          (this.processLoadingButton = () => {
+            this.store.getState().isLoadingNextPage
+              ? this.loadingSpinner.classList.remove("dn")
+              : this.loadingSpinner.classList.add("dn");
+          }),
+          (this.processItemColumns = () => {
+            var e = this.store.getState();
+            const t = e.itemsPerRow,
+              s = e.activeTags,
+              i = this.gridEl.querySelectorAll(u.gridItemPromoSelector);
+            Object(o.a)(
+              this.gridEl.querySelectorAll(u.gridItemVariableWidthSelector),
+              (e) => {
+                3 === t
+                  ? (e.classList.remove("c3--lg"),
+                    e.classList.add("c4--lg"),
+                    Object(o.a)(i, (e) => {
+                      e.classList.add("dn");
+                    }))
+                  : 4 === t &&
+                    (e.classList.add("c3--lg"),
+                    e.classList.remove("c4--lg"),
+                    0 === s.length &&
+                      Object(o.a)(i, (e) => {
+                        e.classList.remove("dn");
+                      }));
+              }
+            );
+          }),
+          (this.processContainer = () => {
+            this.filterContainer &&
+              (this.store.getState().isShowingFilters
+                ? (this.filterContainer.classList.remove("dn"),
+                  Object(o.a)(this.filterToggleButtons, (e) => {
+                    e.classList.add("active");
+                  }))
+                : (this.filterContainer.classList.add("dn"),
+                  Object(o.a)(this.filterToggleButtons, (e) => {
+                    e.classList.remove("active");
+                  })));
+          }),
+          (this.processFilteredInputs = () => {
+            const e = this.store.getState().activeTags;
+            Object(o.a)(this.filterInputs, (t) => {
+              e.indexOf(t.value) > -1 && e.length > 0
+                ? (t.checked = !0)
+                : (t.checked = !1);
+            });
+          }),
+          (this.processFilteredItems = () => {
+            const e = this.store.getState().activeTags;
+            Object(o.a)(this.gridEl.querySelectorAll(u.itemSelector), (t) => {
+              let s = !1;
+              if (e.length > 0)
+                for (let i = 0; i < e.length; i++) {
+                  const r = e[i];
+                  if (!(t.dataset.tags.indexOf(r) > -1)) {
+                    s = !1;
+                    break;
+                  }
+                  s = !0;
+                }
+              else s = !0;
+              s ? t.classList.remove("dn") : t.classList.add("dn");
+            });
+          });
+      };
+    }.call(this, s(15)));
+  },
+  96: function (e, t, s) {
+    "use strict";
+    (function (e) {
+      var i = s(97),
+        r = s.n(i),
+        o = s(12),
+        a = s(31),
+        n = s(98),
+        l = s(67),
+        c = s.n(l),
+        d = s(10),
+        h = s(100),
+        u =
+          Object.assign ||
+          function (e) {
+            for (var t = 1; t < arguments.length; t++) {
+              var s = arguments[t];
+              for (var i in s)
+                Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i]);
+            }
+            return e;
+          };
+      const m = e.localStorage;
+      var p = window;
+      const g = p.CART,
+        v = p.CUSTOMER_EMAIL,
+        S = {
+          shopifyDomain: p.SHOPIFY_DOMAIN,
+          customerEmail: v,
+          globals: p.GLOBALS,
+          isHeaderScrolled: !1,
+          activeProductVariantId: null,
+          activeProductVariantId1: null,
+          activeProductVariantId2: null,
+          isMiniCartOpen: !1,
+          isMobileNavOpen: !1,
+          isNavigatingToCheckout: !1,
+          activeDesktopCategory: null,
+          activeMobileCategory: null,
+          isSearchOpen: !1,
+          cart: g || null,
+          pendingUpdateVariantId: null,
+          pendingAddVariantId: null,
+          addedVariantIds: [],
+          isCartUpdating: !1,
+          addingTryNow: null,
+        };
+      t.a = (e = {}) => {
+        let t = {};
+        try {
+          t = JSON.parse(m.getItem("velvet_store"));
+        } catch (e) {
+          console.log(
+            "[INFO]: localStorage is disabled. Cannot save store state."
+          ),
+            (t = {});
+        }
+        const s = Object(o.a)(u({}, S, e, t));
+        return (
+          s.listen(
+            r()(
+              (e) => {
+                try {
+                  m.setItem("velvet_store", JSON.stringify({}));
+                } catch (e) {
+                  console.log(
+                    "localStorage is disabled. Cannot save store state."
+                  );
+                }
+              },
+              1e3,
+              { leading: !0 }
+            )
+          ),
+          {
+            getState: s.getState,
+            setState: s.setState,
+            listen: s.listen,
+            unlisten: s.unlisten,
+            setScrolledHeader: ((e) => (t) => {
+              e.setState({ isHeaderScrolled: t });
+            })(s),
+            setActiveVariantId: ((e) => (t) => {
+              e.setState({ activeProductVariantId: t });
+            })(s),
+            setActiveVariantId1: ((e) => (t) => {
+              e.setState({ activeProductVariantId1: t });
+            })(s),
+            setActiveVariantId2: ((e) => (t) => {
+              e.setState({ activeProductVariantId2: t });
+            })(s),
+            setMiniCartOpen: ((e) => (t) => {
+              e.setState({
+                isMiniCartOpen: t,
+                isSearchOpen: !1,
+                isMobileNavOpen: !1,
+                activeDesktopCategory: null,
+              });
+            })(s),
+            setDesktopHeaderCategory: ((e) => (t) => {
+              e.setState({ activeDesktopCategory: t });
+            })(s),
+            setSearchOpen: ((e) => (t) => {
+              var s = e.getState();
+              const i = s.isMobileNavOpen,
+                r = s.isMiniCartOpen,
+                o = s.activeDesktopCategory;
+              e.setState({
+                isSearchOpen: t,
+                isMobileNavOpen: !t && i,
+                isMiniCartOpen: !t && r,
+                activeDesktopCategory: t ? null : o,
+              });
+            })(s),
+            toggleMobileNav: ((e) => () => {
+              const t = !e.getState().isMobileNavOpen;
+              var s = e.getState();
+              const i = s.isMiniCartOpen,
+                r = s.isSearchOpen,
+                o = s.activeDesktopCategory;
+              e.setState({
+                isMobileNavOpen: t,
+                isMiniCartOpen: !t && i,
+                isSearchOpen: !t && r,
+                activeDesktopCategory: t ? null : o,
+              });
+            })(s),
+            fetchCart: ((e) => () => {
+              a.b()
+                .then((e) => e.json())
+                .then((t) => {
+                  e.setState({ cart: t });
+                });
+            })(s),
+            addVariantAndOpenCart: (
+              (e) =>
+              (t, s = 1, i = {}, r = null) => (
+                e.setState({ pendingAddVariantId: t, addingTryNow: r }),
+                a
+                  .a(t, s, i)
+                  .then((e) => e.json())
+                  .then((i) => {
+                    var r = e.getState();
+                    const o = r.cart,
+                      a = r.addedVariantIds,
+                      n = [i];
+                    for (let e = 0; e < o.items.length; e++) {
+                      let t = o.items[e];
+                      t.key !== i.key && n.push(t);
+                    }
+                    const l = o.item_count + s,
+                      d = c()(n, (e, t) => e + (t.line_price || 0), 0);
+                    e.setState({
+                      pendingAddVariantId: null,
+                      addingTryNow: null,
+                      isMiniCartOpen: !0,
+                      addedVariantIds: [...a, t],
+                      cart: u({}, o, {
+                        items: n,
+                        item_count: l,
+                        total_price: d,
+                      }),
+                    });
+                  })
+                  .catch((t) => {
+                    console.error(t),
+                      e.setState({
+                        pendingAddVariantId: null,
+                        addingTryNow: null,
+                      });
+                  })
+              )
+            )(s),
+            addVariant: (
+              (e) =>
+              (t, s = 1, i = {}) => (
+                e.setState({ pendingAddVariantId: t }),
+                a
+                  .a(t, s, i)
+                  .then((e) => e.json())
+                  .then((i) => {
+                    var r = e.getState();
+                    const o = r.cart,
+                      a = r.addedVariantIds,
+                      n = [i];
+                    for (let e = 0; e < o.items.length; e++) {
+                      let t = o.items[e];
+                      t.key !== i.key && n.push(t);
+                    }
+                    const l = o.item_count + s,
+                      d = c()(n, (e, t) => e + (t.line_price || 0), 0);
+                    e.setState({
+                      pendingAddVariantId: null,
+                      addedVariantIds: [...a, t],
+                      cart: u({}, o, {
+                        items: n,
+                        item_count: l,
+                        total_price: d,
+                      }),
+                    });
+                  })
+                  .catch((t) => {
+                    console.error(t), e.setState({ pendingAddVariantId: null });
+                  })
+              )
+            )(s),
+            updateVariantQuantity: ((e) => (t, s) => {
+              e.setState({ pendingUpdateVariantId: t }),
+                a
+                  .d(t, s)
+                  .then((e) => e.json())
+                  .then((t) => {
+                    e.setState({ pendingUpdateVariantId: null, cart: t });
+                  })
+                  .catch((t) => {
+                    console.error(t),
+                      e.setState({ pendingUpdateVariantId: null });
+                  });
+            })(s),
+            updateCartAttributes: ((e) => (t) => (
+              e.setState({ isCartUpdating: !0 }),
+              a
+                .c(t)
+                .then((e) => e.json())
+                .then((t) => {
+                  e.setState({ cart: t, isCartUpdating: !1 });
+                })
+                .catch((t) => {
+                  console.error(t), e.setState({ isCartUpdating: !0 });
+                })
+            ))(s),
+            navigateToCheckout: ((e) => () => {
+              if (
+                (e.setState({ isNavigatingToCheckout: !0 }),
+                window.z_store &&
+                  (window.z_store.live ||
+                    window.zTestModeParam ||
+                    window.zTestModeCookie) &&
+                  window.znIsCountryDomestic())
+              )
+                return void window.znCheckout();
+              var t = e.getState();
+              const s = t.shopifyDomain,
+                i = t.customerEmail,
+                r = t.cart;
+              if (Object(d.b)(r.items) > 0) return void Object(h.a)();
+              const o = Object(n.a)({
+                cart: r,
+                shopifyDomain: s,
+                customerEmail: i,
+              });
+              window.location = o;
+            })(s),
+          }
+        );
+      };
+    }.call(this, s(15)));
+  },
+  98: function (e, t, s) {
+    "use strict";
+    var i = s(99),
+      r = s.n(i);
+    t.a = ({ cart: e, shopifyDomain: t, customerEmail: s }) => {
+      let i = !1;
+      if (
+        (r()(e.items, (e) => {
+          e.properties && e.properties.subscription_id && (i = !0);
+        }),
+        !i)
+      )
+        return "/checkout";
+      let o = "https://checkout.rechargeapps.com/r/checkout";
+      return (
+        (o += "?myshopify_domain=" + t),
+        (o += "&cart_token=" + e.token),
+        s && (o += "&customer_email=" + s),
+        o
+      );
+    };
+  },
+});
+
+var lazyVideoLoader = document.querySelectorAll(".lazyVideoLoader");
+lazyVideoLoader.forEach(function (el) {
+  let lazyVideoTrigger = el.querySelector(".lazyVideoTrigger");
+  lazyVideoTrigger.addEventListener("click", function (e) {
+    let videoID = e.target.getAttribute("data-video-id");
+    let iFrame = document.createElement("iframe");
+    iFrame.src =
+      "https://www.youtube.com/embed/" +
+      videoID +
+      "?rel=0&showinfo=0&autoplay=1";
+    el.appendChild(iFrame);
+  });
+});
+
+const qtyBox = document.querySelectorAll(".qtyBox");
+qtyBox.forEach(function (el) {
+  let decr = el.querySelector(".qtyDecr");
+  let incr = el.querySelector(".qtyIncr");
+  let inp = el.querySelector(".qtyInp");
+
+  decr.addEventListener("click", function () {
+    let val = Number(inp.value);
+    console.log(val);
+    if (val > 1) {
+      inp.value = val - 1;
+    }
+  });
+
+  incr.addEventListener("click", function () {
+    let val = Number(inp.value);
+    console.log(val);
+    inp.value = val + 1;
+  });
+});

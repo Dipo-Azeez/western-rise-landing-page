@@ -1,0 +1,397 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.top-heading{
+    display: flex;
+    top: 0;
+    width: 100%;
+    background-color: rgb(88,68,68);
+    justify-content: center;
+    padding: 8px;
+    color: white;
+    text-decoration-style: double;
+    box-sizing: border-box;
+}
+
+.container{
+    background-image: url(western-rise-20200909-4755_DxO_b4e3501c-77b6-45a8-ace4-6b92d81b0ee1_800x.jpg);
+    position: relative;
+    text-align: center;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+
+.perf{
+    position: absolute;
+    top: 50%;
+    font-size: 50px;
+}
+
+.button{
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    padding: 20px;
+    width: 200px;
+    background-color: white;
+    border-radius: 5px;
+    border: 0;
+}
+
+.tnm{
+    margin-top: 100px;
+}
+
+.search{
+    margin-top: 50px;
+}
+
+.bnm{
+    margin-top: 100px;
+}
+
+.write-up-2{
+    text-align: center;
+    margin-top: 80px;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.section-2{
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    font-size: 15px;
+}
+
+.harmburger-menu{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.bar{
+    width: 25px;
+    height: 2.5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.email-icon{
+    background-color: white;
+    color: orangered;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.mobile-nav-active .container{
+    transform: translate(80vw,0);
+}
+
+.mobile-nav-menu{
+    margin-left: 15px;
+    position: fixed;
+    width: 80vw;
+    height: 100vh;
+    transform: translateX(-80vw);
+}
+
+.mobile-nav-active .mobile-nav-menu{
+    transform: translateX(0);
+}
+
+.image-1 img{
+    /* width: 100%; */
+}
+
+.op{
+    background-color: #25282b;
+    border: 20px;
+    padding: 15px;
+    width: 200px;
+    border-radius: 5px;
+    color: whitesmoke;
+    margin-bottom: 50px;
+}
+
+.table{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.image-1{
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.apparel{
+    background-color: rgb(201, 202, 202);
+    text-align: center;
+}
+
+.h2{
+    padding-top: 15px;
+    padding-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.guy{
+    border-radius: 10px;
+}
+
+.ex{
+    border-radius: 10px;
+}
+
+.trending{
+    display: flex;
+    justify-content: center;
+}
+
+.sub-trending{
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+.tab{
+    display: flex;
+    justify-content: start;
+}
+
+.beach-man{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: 18px;
+    margin-right: 18px;
+    max-width: 1600px;    
+}
+
+.p1{
+    margin-bottom: 40px;
+}
+
+.btc{
+    background-color: #25282b;
+    border: 20px;
+    padding: 15px;
+    width: 200px;
+    border-radius: 5px;
+    color: whitesmoke;
+    margin-bottom: 50px;
+}
+
+.sub-sec{
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.top-bottom{
+    margin-top: 100px;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.top-pic{
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+}
+
+.tops{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top: 50%;
+    left: 40%;
+}
+
+.bp{
+    border-radius: 10px;
+}
+
+.btmpic{
+    margin-bottom: 100px;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+}
+.bots{
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+}
+
+.tp{
+    border-radius: 10px;
+}
+
+.sign-sec{
+    background-color: rgb(214, 221, 221);
+    /* margin: -18px; */
+    /* padding: -18px; */
+    text-align: center;
+}
+.sign{
+   position: relative; 
+   margin-left: 30px;
+   margin-right: 30px;
+}
+
+.h3{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.signature{
+    position: absolute;
+    height: 100px;
+    width: 200px;
+    top: 50px;
+    right: -30px;
+}
+
+.fl{
+    margin-top: 80px;
+    text-align: center;
+}
+
+.footer{
+    margin-top: 150px;
+    text-align: center;
+}
+
+.foot{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.images{
+    margin-top: 30px;
+    display: flex;
+    padding: 15px;
+    justify-content: space-around;   
+}
+
+.images-2{
+    display: flex;
+    padding: 15px;
+    justify-content: space-around;
+}
+
+.imgg{
+    border-radius: 10px;
+}
+
+.imggg{
+    border-radius: 10px;
+}
+
+.img4{
+    border-radius: 10px;
+}
+
+.img5{
+    border-radius: 10px;
+}
+
+.sig{
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+.buttonz{
+    background-color: #25282b;
+    border: 20px;
+    padding: 15px;
+    width: 150px;
+    border-radius: 5px;
+    color: whitesmoke;
+    margin-bottom: 50px;
+}
+
+.circle{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(116, 120, 122);
+    margin-left: 350px;
+    margin-top: 10px;
+}
+
+.the{
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+}
+
+.thee{
+    margin-top: 10px;
+}
+
+.pop-up-h{
+    color: white;
+    background-color: lightgray;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: -110px;
+    margin-left: 100px;
+}
+
+.pop-up-info{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 80vw;
+    height: 28vh;
+    margin-top: 20vh;
+    margin-right: 9vw;
+    margin-left: 9vw;
+    padding-top: 10vh;
+    position: absolute;
+    position: fixed;
+}
+
+.hj{
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: -20px;
+}
+
+.hk{
+    margin-left: 25px;
+}
+
+.hm{
+    top: -150px;
+}
+
+.circles{
+    cursor: pointer;
+}
