@@ -10,59 +10,82 @@
 
       <link rel="stylesheet" type="text/css" href="webpage.css">
 
+
+       <!-- Favicon -->
+   <link
+   rel="icon"
+   type="image/png"
+   sizes="32x32"
+   href="assets/icons/ce67afe1d782e3ed8f32808512b4d334.jpg"
+ />
+
     </head>
     
 
     <body>
 
     <div class="mobile-nav-menu">
+        <div class="search">
 
-        <div class="search"><h4>Search</h4></div>
+           <i class="close-menu" id="close-menu">
+  <div title="close-menu">
+  <img src="icon-mobile-menu-close.svg" class="close-img" alt="close-menu"/> </div></i>
 
-        <div class="tnm">
-            <h2>Featured</h2>
-            <h2>Bottoms</h2>
-            <h2>Tops</h2>
-            <h2>Accessories</h2>
-            <h2>Gift Card</h2>
+            <h4><a href="#free shipping" class="nav-link"> FREE Shipping + Free Returns </a></h4>
+            
         </div>
 
-        <div class="bnm">
-            <h5>Login</h5>
-            <h5>Story</h5>
-            <h5>Craft</h5>
-            <h5>FAQ</h5>
-            <h5>Journal</h5>
-        </div>
+        <ul class="tnm">
+           <li>  <h2> <a href="#featured" class="nav-link">Featured </a></h2> </li>
+           <li> <h2> <a href="#apparel" class="nav-link">Apparel Elevated </a> </h2> </li>
+           <li> <h2> <a href="#trending" class="nav-link">Trending </a> </h2> </li> 
+           <li> <h2> <a href="#accessories" class="nav-link">Accessories </a> </h2> </li>
+           <li> <h2> <a href="#tops" class="nav-link">Tops, Bottoms </a> </h2> </li>
+        </ul>
+
+        <ul class="bnm">
+            <li> <h5> <a href="#login" class="nav-link">  Login  </a> </h5> </li>
+            <li> <h5> <a href="#story" class="nav-link"> Story   </a> </h5> </li>
+            <li> <h5> <a href="#more" class="nav-link">  More  </a> </h5> </li>
+            <li> <h5> <a href="#faq" class="nav-link"> FAQ   </a> </h5> </li>
+            <li> <h5> <a href="#contact" class="nav-link">  Contact  </a> </h5> </li>
+        </ul>
     </div>
         
       <header class="container">
 
-        <div class="top-heading">FREE Shipping + FREE Returns</div>
+        <div class="top-heading">
+            
+           <button class="harmburger-menu" type="button" onclick="myFunction()">
+            <div class="bar"> </div>
+            <div class="bar"> </div>
+            <div class="bar"> </div>
+
+        </button>
+
+    
+    <img src="logo-white.jpeg.svg" alt="western rise image" height="20px">
+
+    
+         
+            <span class="email-icon">o</span>
+
+        </div>
+
 
         <div class="nav"> 
+           <div id="free shipping"> FREE Shipping + FREE Returns</div> 
          
-         <button class="harmburger-menu" type="button" onclick="myFunction()">
-             <div class="bar"> </div>
-             <div class="bar"> </div>
-             <div class="bar"> </div>
-
-         </button>
-         <img src="logo-white.jpeg.svg" alt="western rise image" height="20px">
-         <span class="email-icon">o</span>
-         
-         <button class="button" type="button">SHOP NOW</button>
          
        </div>
          
         <div class="perf">Performance <br />Clothing <br /> for Travel, Work, and <br/> Play</div>
-
-
+        <button class="button" type="button">SHOP NOW</button>
       </header>
 
       <section class="write-up-2">
          
-        <h2>The Last Pants You'll Need</h2>
+        <h2 id="featured">The Last Pants You'll Need</h2>
 
         <div> Our pants are crafted from the world's highest performance fabrics to be <br />wearable for any occasion and comfortable in any situation.<br /> All backed by a lifetime guarantee.</div>
 
@@ -71,11 +94,13 @@
 
             <div class="section-2">
 
-                <div> <img class="image-1" img src="022020_WesternRise-ECOM_0375_3_1000x.jpg" img alt="picture1" width="100%"></div>
                 
                 <div>
 
-                <table class="table">
+                    <div> <img class="image-1" img src="022020_WesternRise-ECOM_0375_3_1000x.jpg" img alt="picture1"></div>
+
+                <table>
+
                     <tr>
                         <th>AT Pant</th>
                         <th>$128</th>
@@ -111,10 +136,6 @@
                         <td>Slim</td>
                     </tr>
 
-                    <tr>
-                        <td>Colors</td>
-                        <td>COLOR CIRCLES</td>
-                    </tr>
                 </table>                      
   
                 <button class="op" button type="button">SHOP NOW - $128</button>
@@ -124,9 +145,9 @@
 
               <div>
 
-                <div> <img class="image-1" img src="untitled-0027_0aee1b81-66b7-41db-977f-5d5f22113b25_1000x.jpg" img alt="picture2" width="100%"></div>
+                <div> <img class="image-1" img src="untitled-0027_0aee1b81-66b7-41db-977f-5d5f22113b25_1000x.jpg" img alt="picture2"></div>
                 
-                <table class="table">
+                <table>
                     <tr>
                         <th>Evolution Pant</th>
                         <th>$149</th>
@@ -162,10 +183,6 @@
                         <td>Slim/Regular</td>
                     </tr>
 
-                    <tr>
-                        <td>Colors</td>
-                        <td>COLOR CIRCLES</td>
-                    </tr>
                 </table>                      
   
                 <button class="op" button type="button">SHOP NOW - $149</button>
@@ -174,9 +191,9 @@
   
               <div>
 
-                <div> <img class="image-1" img src="022020_WesternRise-ECOM_0156_1000x.jpg" img alt="picture3" width="100%"></div>
+                <div> <img class="image-1" img src="022020_WesternRise-ECOM_0156_1000x.jpg" img alt="picture3"></div>
                 
-                <table class="table">
+                <table>
                     <tr>
                         <th>Diversion Pant</th>
                         <th>$138</th>
@@ -212,10 +229,6 @@
                         <td>Slim</td>
                     </tr>
 
-                    <tr>
-                        <td>Colors</td>
-                        <td>COLOR CIRCLES</td>
-                    </tr>
                 </table>                      
   
                 <button class="op" button type="button">SHOP NOW - $138</button>
@@ -225,9 +238,9 @@
 
               <div>
 
-                <div> <img class="image-1" img src="052920_WR_ECOM_SUMMER-0272_1000x.jpg" img alt="picture4" width="100%"></div>
+                <div> <img class="image-1" img src="052920_WR_ECOM_SUMMER-0272_1000x.jpg" img alt="picture4"></div>
                 
-                <table class="table">
+                <table>
                     <tr>
                         <th>Spectrum Jogger</th>
                         <th>$128</th>
@@ -263,10 +276,6 @@
                         <td>Jogger</td>
                     </tr>
 
-                    <tr>
-                        <td>Colors</td>
-                        <td>COLOR CIRCLES</td>
-                    </tr>
                 </table>                      
   
                 <button class="op" button type="button">SHOP NOW - $128</button>
@@ -277,26 +286,26 @@
       </section>
       
 
-      <section class="apparel">
+      <section class="apparel" id="apparel">
 
         <div class="h2">
            <h2>Apparel, Elevated</h2>
 
 
               <div>
-                  <img class="guy" img src="100719_WR_Shirts_Eric-7057_1_98741767-a982-4547-8423-a2ea30510885_600x.jpg" img alt="first pic" width="100%">
+                  <img class="guy" img src="100719_WR_Shirts_Eric-7057_1_98741767-a982-4547-8423-a2ea30510885_600x.jpg" img alt="first pic" >
                   <h3>Ultimate Simplicity</h3>
                   <div>Every design detail and process is <br />considered, removing anything<br /> unnecessary for maximum efficiency.</div>
               </div>
 
               <div>
-                  <img src="" img alt="second pic">
+                  <img src="022020_WesternRise-ECOM_0450_2b202069-f891-4fe9-a56e-041dfa729487_1000x.jpg" img alt="second pic" class="guy">
                   <h3>Versatile Performance</h3>
                   <div>We develop the highest quality materials with the best suppliers to create versatile garments that perform no matter what.</div>
               </div>
 
               <div>
-                  <img src="" img alt="third pic">
+                  <img src="022020_WesternRise-ECOM_1450_600x.jpg" img alt="third pic" class="guy">
                   <h3>Timeless Style</h3>
                   <div>Instead of chasing fads and trends, we elevate classic staples to be more versatile than ever before.</div>
              </div>
@@ -311,14 +320,15 @@
 
       <section>
           
-          <h2 class="trending">Trending</h2>
+          <h2 class="trending" id="trending">Trending</h2>
 
 
             <div class="sub-trending">
                 
-                <img class="ex" img src="090221-WR-ECOM-34313_1000x.jpg" img alt="exhibit 1" width="100%">
+                
 
                 <div>
+                    <img class="ex" img src="090221-WR-ECOM-34313_1000x.jpg" img alt="exhibit 1">
                     <table>
 
                         <tr>
@@ -336,7 +346,7 @@
 
             <div>
                 
-                <img class="ex" img src="022020_WesternRise-ECOM_0375_3_1000x.jpg" img alt="exhibit 2" width="100%">
+                <img class="ex" img src="022020_WesternRise-ECOM_0375_3_1000x.jpg" img alt="exhibit 2">
 
                 <div>
                     <table>
@@ -358,7 +368,7 @@
 
             <div>
                 
-                <img class="ex" img src="030821-WR-ECOM-Kevin-16700_1000x.jpg" img alt="exhibit 3" width="100%">
+                <img class="ex" img src="030821-WR-ECOM-Kevin-16700_1000x.jpg" img alt="exhibit 3">
 
                 <div>
                     <table>
@@ -379,7 +389,7 @@
 
             <div>
                 
-                <img class="ex" img src="Diversion_Navy00001_1000x.jpg" img alt="exhibit 4" width="100%">
+                <img class="ex" img src="Diversion_Navy00001_1000x.jpg" img alt="exhibit 4">
 
                 <div>
                     <table>
@@ -401,29 +411,31 @@
       </section>
 
       
-      <section>
-         <div class="beach-man"> <img src="062520_WR-Montauk-2208_4_1000x.jpg" img alt="man on a beach, arms wide open" width="100%"> </div>
+      <section id="accessories" class="accessories"> 
+         <div class="beach-man"> <img src="062520_WR-Montauk-2208_4_1000x.jpg" img alt="man on a beach, arms wide open" class="lk"> </div>
       
          <div class="sub-sec">
 
          <h1>Built To Move</h1>
          <p class="p1">We needed a set of active clothing that could transcend occasions and never feel out of place. We built these pictures to exist at the confluence of movement and mindfulness-a feeling of energized focus, full involvement, and enjoyment in activity.</p>
-         <button class="btc" button type="button" onclick="myFunction()">SHOP COLLECTION</button>
+         <button class="btc" button type="button">SHOP COLLECTION</button>
 
          </div>
 
       </section>
 
-      <div class="top-bottom">
+      <div class="top-bottom" id="tops">
+
+
 
           <div class="top-pic"> 
-              <img class="tp" img src="T.WilkinsonRay_-63_1000x.jpg" img alt="Tops" width="100%">
+              <img class="tp" img src="T.WilkinsonRay_-63_1000x.jpg" img alt="Tops">
           <div class="tops">Tops</div>
 
           </div>
 
           <div class="btmpic">
-          <img class="bp" img src="070719_WR_DAY2_04840_1000x.jpg" img alt="Bottoms" width="100%">
+          <img class="bp" img src="070719_WR_DAY2_04840_1000x.jpg" img alt="Bottoms">
           <div class="bots">Bottoms</div>
 
           </div>
@@ -432,11 +444,11 @@
 
       </div>
 
-      <section class="sign-sec">
+      <section class="sign-sec" id="story">
 
         <div class="sign">
 
-        <img class="sig" src="RShingledecker-Fall2020_20201020_01_467b5140-4c4a-4a3e-9320-35e6bc631d62_700x.jpg" img alt="pic of a man and woman" width="100%">
+        <img class="sig" src="RShingledecker-Fall2020_20201020_01_467b5140-4c4a-4a3e-9320-35e6bc631d62_700x.jpg" img alt="pic of a man and woman">
         <img class="signature" img src="signature.png" img alt="signature">
 
         </div>
@@ -445,30 +457,30 @@
 
         <p class="h3">Western Rise was founded with an adventurous spirit and a lofty goal: one set of performance clothing that works for anything your day may bring. Versatile, quality, stylish, and sustainable clothing that allows you to own less and experience more.</p>
 
-        <button class="buttonz" type="button" onclick="myFunction()">READ MORE</button>
+        <button class="buttonz" type="button">READ MORE</button>
 
     </section>
 
 
-    <section class="fl">
+    <section class="fl" id="more">
 
-        <h2>@western_rise</h2>
-        <div><u>Follow Us</u></div>
+        <!-- <h2>@western_rise</h2> -->
+        <!-- <div><u>Follow Us</u></div> -->
 
         <div class="images">
-            <img class="img5" src="94397092_277256963435043_6410492477666615727_n_600x.jpg" img alt="pic 1" width="150px">
-            <img class="imgg" img src="97372558_601915787342557_2235084531128215840_n_600x.jpg" img alt="pic 2" width="150px"> 
+            <img class="img-5" src="94397092_277256963435043_6410492477666615727_n_600x.jpg" img alt="pic 1">
+            <img class="img-5" img src="97372558_601915787342557_2235084531128215840_n_600x.jpg" img alt="pic 2"> 
         </div>
 
         <div class="images-2">
-            <img class="img4" src="120096890_967932640361031_1561191687055643364_n_600x.jpg" img alt="pic 3" width="150px">
-            <img class="imggg" img src="119448251_2025666167564051_9065597852239731517_n_600x.jpg" img alt="pic 4" width="150px">
+            <img class="img-5" src="120096890_967932640361031_1561191687055643364_n_600x.jpg" img alt="pic 3">
+            <img class="img-5" img src="119448251_2025666167564051_9065597852239731517_n_600x.jpg" img alt="pic 4">
         </div>
 
     </section>
 
 
-    <footer class="footer">
+    <footer class="footer" id="login">
 
         <div>
 
@@ -479,8 +491,8 @@
                 <h4>Subscribe</h4>
 
                 <div>
-                    Enter your email address
-                    <div><u>Sign Up</u></div>
+                    Enter your email address<br>
+                    Sign Up<br><br>
                 </div>
                 
                 <form action="index.php">
@@ -509,47 +521,42 @@
                     <h4>Report an issue with an order</h4>
                     </div>
 
-                <button class="circles" type="button" onclick="myFunctions()">
-                <div class="circle"></div>    
-                 </button> 
+                
                    
                 </div>
 
                 <p>Join our newsletter to stay up to date on promos and launches</p><hr />
 
-               
+                
+             
+     
             
-            <div>
+            <div id="faq">
                 <h4>Shop</h4>
-                 <p>Tops</p>
-                 <p>Bottoms</p>
-                 <p>Accessories</p>
-                 <p>Gift Cards</p>
+                <p> <a href="#trending" class="nav-link">Trending </a> </p> 
+                <p> <a href="#tops" class="nav-link">Tops </a> </p>
+                <p> <a href="#tops" class="nav-link">Bottoms </a> </p>
+                <p> <a href="#accessories" class="nav-link">Accessories </a> </p> 
             </div>
 
             <div>
                 <h4>#apparelelevated</h4>
-                 <p>Story</p>
-                 <p>Craft</p>
-                 <p>Journal</p>
-                 <p>Rewards</p>
-                 <p>Become a Retailer</p>
-                 <p>Ambassadors and Affiliates</p>
-                 <p>Get $20</p>
+                <p> <a href="#story" class="nav-link"> Story   </a> </p>
+                 <p> <a href="#featured" class="nav-link"> Featured  </a> </p>
+                 <p> <a href="#apparel" class="nav-link"> Journal</a></p>
+                 <p> <a href="#more" class="nav-link"> Become a Retailer </a></p>
             </div>
 
             <div>
                 <h4>Support</h4>
-                 <p>Contact Us</p>
-                 <p>FAQ</p>
-                 <p>Returns and Exchanges</p>
-                 <p>Privacy Policy</p>
+                 <p> <a href="#contact" class="nav-link">  Contact Us </a></p>
+                 <p> <a href="#faq" class="nav-link"> FAQ   </a> </p>
             </div>
 
             <div>
                 <h4>Account</h4>
-                <p>Login</p>
-                <p>Sign Up</p>
+                <p> <a href="#login" class="nav-link">  Login  </a> </p>
+                <p> <a href="#login" class="nav-link">  Sign Up  </a> </p>
             </div>
 
             </div>
@@ -557,45 +564,45 @@
 
         </div>
 
-        <div class="foot">
+        <div class="foot" id="contact">
 
             
             <div>
-                <img src="facebook.svg" img alt="facebook icon" width="30px">
-                <img src="instagram.svg" img alt="instagram icon" width="30px">
+                <a href="https://twitter.com/Dipo_Azeez" target="_blank" class="kll"> <img src="icons8-twitter-circled.gif" img alt="twitter" width="30px" loading="lazy">     </a>
+                <a href="https://Instagram.com/Dipo_Azeez_official" target="_blank" class="kll">   <img src="icons8-instagram.gif" img alt="instagram" width="30px" loading="lazy">    </a>
+                <a href="https://Linkedin.com/Dipo Azeez" target="_blank" class="kll">  <img src="icons8-linkedin-circled.gif" img alt="linkedin" width="30px" loading="lazy">     </a>
+                <a href="https://Github.com/Dipo-Azeez" target="_blank" class="kll">    <img src="icons8-github.gif" img alt="github" width="30px" loading="lazy">   </a>
+                
+                
+              
             </div>
 
             <div>
-            <img src="all rights reserved.jpg" img alt="all rights reserved" width="20px">
-            2022 All Rights Reserved
+           &copy; 2022 All Rights Reserved
             </div>
 
         </div>
+
+
+
+        <i class="scroll-up" id="scroll-up"
+  >
+  <div title="scroll-up">
+  <img
+    src="icons8-double-up.gif"
+    class="socicon up-arrow"
+    alt="scroll-up"
+
+/> 
+</div></i>
+
 
 
     </footer>
 
-    <script>
-        function myFunction(){
-            document.body.classList.toggle("mobile-nav-active")
-        }
-    </script>
+    <script src="webpage.js"></script>
 
-    <script>
-
-        function myFunctions() {
-            var x = document.getElementById();
-            x.style.display = "block";
-        }
-
-        function myFunctions() {
-            var y = document.getElementById();
-            y.style.display = "none";
-            var message = document.getElementById().value;
-            alert("Hey " + message + ", Thank you for subscribing")
-        }
-
-   </script>
+    
 
     </body>
 
