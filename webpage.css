@@ -147,7 +147,7 @@ body{
     display: none;
     z-index: 99;
     width: 80vw;
-    height: 100%;
+    height: 100vh;
     background-color: rgb(190, 187, 187);
     transform: translateX(-60vw);
 }
@@ -691,6 +691,15 @@ table{
 
 .sign-sec{
     margin: 0;
+}
+
+.mobile-nav-menu{
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.perf{
+    font-size: 40px;
 }
 
 }
