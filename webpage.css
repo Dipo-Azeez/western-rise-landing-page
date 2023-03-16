@@ -142,8 +142,11 @@ body{
 }
 
 .mobile-nav-menu{
-    margin-left: 15px;
+    /* margin-left: 15px; */
     position: fixed;
+    display: none;
+    background-color: bisque;
+    z-index: 99;
     width: 80vw;
     height: 100vh;
     transform: translateX(-60vw);
@@ -151,6 +154,7 @@ body{
 
 .mobile-nav-active .mobile-nav-menu{
     transform: translateX(0);
+    display: block;
 }
 
 .op{
@@ -543,6 +547,7 @@ table td{
         margin-left: 200px;
     }
 
+
     .image-1{
         border-radius: 20px;
         margin-bottom: 10px;
@@ -570,8 +575,8 @@ table{
 }
 
 .guy{
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: auto;
 }
 
 .ex{
@@ -580,8 +585,8 @@ table{
 }
 
 .lk{
-    width: 350px;
-    height: 300px;
+    width: 100%;
+    height: auto;
 }
 
 .top-bottom{
@@ -608,6 +613,8 @@ table{
 
 .bp{
     border-radius: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .btmpic{
@@ -626,6 +633,8 @@ table{
 
 .tp{
     border-radius: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .sign-sec{
@@ -642,8 +651,8 @@ table{
 }
 
 .sig{
-    width: 350px;
-    height: 300px;
+    width: 100%;
+    height: auto;
 }
 
 
@@ -674,9 +683,12 @@ table{
 }
 
 .img-5{
-    width: 170px;
-    height: 170px;
+    /* width: 170px; */
+    /* height: 170px; */
+    width: 100%;
+    height: auto;
 }
+
 
 
 }
