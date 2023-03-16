@@ -683,12 +683,14 @@ table{
 }
 
 .img-5{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     /* width: 100%; */
     /* height: auto; */
 }
 
-
+.sign-sec{
+    margin: 0;
+}
 
 }
