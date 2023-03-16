@@ -145,10 +145,10 @@ body{
     /* margin-left: 15px; */
     position: fixed;
     display: none;
-    background-color: bisque;
     z-index: 99;
     width: 80vw;
-    height: 100vh;
+    height: 100%;
+    background-color: rgb(190, 187, 187);
     transform: translateX(-60vw);
 }
 
